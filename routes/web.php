@@ -24,5 +24,5 @@ Route::post('registrasi-akun', [SesiController::class, 'registrasi']);
 Route::get('/logout', [SesiController::class, 'logout']);
 
 Route::get('dashboard', function () {
-    return view('welcome');
+    return view('dashboard');
 });

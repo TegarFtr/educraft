@@ -19,7 +19,7 @@
 <div class="register-box">
   <div class="card">
     <div class="card-header text-center">
-        <img class="mt-3" src="{{ asset('AdminLTE') }}/dist/img/tutwuri.png" alt="TutWuriHandayani" height="100" width="100">
+        <img class="mt-3" src="{{ asset('img/logo1.png') }}" alt="TutWuriHandayani" height="100" width="100">
         <div class="h1"><b>OneLearn</b></div>
         <div class="h5">Satu Aplikasi Banyak Pengetahuan</div>
     </div>
