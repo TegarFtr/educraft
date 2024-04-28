@@ -67,16 +67,7 @@
         @yield('content')
       </div>
 
-      {{-- <div class="container" style="margin-top: 150px">
-        <footer class=" d-flex flex-wrap justify-content-between bg-body-tertiary align-items-center py-3 border-top fixed-bottom" >
-            <strong>Copyright &copy; 2024 Kelompok 2</strong>
-            All rights reserved.
-            <div class="float-right d-none d-sm-inline-block">
-              <b>Version</b> 1.0.0
-            </div>
-        </footer>
-      </div> --}}
-      <div class="container" style="margin-top: 150px">
+      <div class="container" style="margin-top: 100px">
         <footer class="py-1 fixed-bottom bg-body-tertiary pt-3">
           <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
         </footer>
