@@ -29,3 +29,12 @@ Route::get('dashboard', function () {
 Route::get('aktivitas', function () {
     return view('aktivitas.aktivitas');
 });
+Route::get('materi', function () {
+    return view('materi.materi');
+});
+Route::get('kelas', function () {
+    return view('kelas.kelas');
+});
+Route::get('kuis', function () {
+    return view('kuis.kuis');
+});

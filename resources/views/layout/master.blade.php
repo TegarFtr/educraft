@@ -25,13 +25,13 @@
                             <a class="nav-link @yield('activeAktivitas')" href="{{ url('aktivitas') }}">Aktivitas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Materi</a>
+                            <a class="nav-link @yield('activeMateri')" href="{{ url('materi') }}">Materi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Kuis</a>
+                            <a class="nav-link @yield('activeKuis')" href="{{ url('kuis') }}">Kuis</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Kelas</a>
+                            <a class="nav-link @yield('activeKelas')" href="{{ url('kelas') }}">Kelas</a>
                         </li>
                     </ul>
                 @endauth
@@ -67,21 +67,18 @@
         @yield('content')
       </div>
 
-      <div class="container-fluid">
-        <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top fixed-bottom">
-          <p class="col-md-4 mb-0 text-body-secondary">© 2024 Company, Inc</p>
-
-          <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
-          </a>
-
-          <ul class="nav col-md-4 justify-content-end">
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Features</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Pricing</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-          </ul>
+      {{-- <div class="container" style="margin-top: 150px">
+        <footer class=" d-flex flex-wrap justify-content-between bg-body-tertiary align-items-center py-3 border-top fixed-bottom" >
+            <strong>Copyright &copy; 2024 Kelompok 2</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+              <b>Version</b> 1.0.0
+            </div>
+        </footer>
+      </div> --}}
+      <div class="container" style="margin-top: 150px">
+        <footer class="py-1 fixed-bottom bg-body-tertiary pt-3">
+          <p class="text-center text-body-secondary">© 2024 Company, Inc</p>
         </footer>
       </div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
