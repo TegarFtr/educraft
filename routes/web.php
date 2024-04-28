@@ -26,3 +26,6 @@ Route::get('/logout', [SesiController::class, 'logout']);
 Route::get('dashboard', function () {
     return view('dashboard');
 });
+Route::get('aktivitas', function () {
+    return view('aktivitas.aktivitas');
+});
