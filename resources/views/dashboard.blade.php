@@ -42,12 +42,12 @@
     <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
             <h3 class="mr-auto">Aktivitas Terbaru</h3>
-            <a href="#" class="btn btn-secondary">Selengkapnya</a>
+            <a href="{{ url('aktivitas') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
         <div class="col-2 mt-2">
             <div class="card border-secondary">
                 <div class="card-header">
-                    <img src="{{ asset('img/logo1.png') }}" class="card-img-top" alt="..." style="height: 100px">
+                    <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
                 </div>
                 <div class="card-body">
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -59,12 +59,12 @@
     <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
             <h3 class="mr-auto">Materi</h3>
-            <a href="#" class="btn btn-secondary">Selengkapnya</a>
+            <a href="{{ url('materi') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
         <div class="col-3 mt-2">
             <div class="card border-secondary">
                 <div class="card-header">
-                    <img src="{{ asset('img/logo1.png') }}" class="card-img-top" alt="..." style="height: 100px">
+                    <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
                 </div>
                 <div class="card-body">
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -76,12 +76,12 @@
     <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
             <h3 class="mr-auto">Kuis</h3>
-            <a href="#" class="btn btn-secondary">Selengkapnya</a>
+            <a href="{{ url('kuis') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
         <div class="col-3 mt-2">
             <div class="card border-secondary">
                 <div class="card-header">
-                    <img src="{{ asset('img/logo1.png') }}" class="card-img-top" alt="..." style="height: 100px">
+                    <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
                 </div>
                 <div class="card-body">
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -93,12 +93,12 @@
     <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
             <h3 class="mr-auto">Kelas</h3>
-            <a href="#" class="btn btn-secondary">Selengkapnya</a>
+            <a href="{{ url('kelas') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
         <div class="col-3 mt-2">
             <div class="card border-secondary">
                 <div class="card-header">
-                    <img src="{{ asset('img/logo1.png') }}" class="card-img-top" alt="..." style="height: 100px">
+                    <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
                 </div>
                 <div class="card-body">
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
