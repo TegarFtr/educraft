@@ -4,8 +4,8 @@
 
 @section('content')
 <div class="container">
-    <nav class="navbar navbar-expand-lg " style="margin-top: 50px">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <nav class="navbar navbar-expand-lg " style="margin-top: 70px">
+        <div class="collapse navbar-collapse ms-auto" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link @yield('activeSemuamateri')" href="{{ url('materi') }}">Semua</a>
@@ -23,6 +23,7 @@
                     <a class="nav-link @yield('activeSosiologi')" href="{{ route('sosiologi') }}">Sosiologi</a>
                 </li>
             </ul>
+            <a href="{{ url('aktivitas') }}" class="btn btn-secondary">Buat Kuis</a>
         </div>
     </nav>
 </div>

@@ -11,7 +11,7 @@
                     <a class="nav-link @yield('activeBerjalan')" href="{{ route('berjalan') }}">Sedang Berjalan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link @yield('activeSelesai')" href="{{ route('aktivitas') }}">Selesai</a>
+                    <a class="nav-link @yield('activeSelesai')" href="{{ url('aktivitas') }}">Selesai</a>
                 </li>
             </ul>
         </div>

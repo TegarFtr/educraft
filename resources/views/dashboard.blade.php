@@ -3,6 +3,7 @@
 @section('activeDashboard', 'active')
 
 @section('content')
+
 <div class="container">
     <div class="row" style="margin-top: 100px">
         <div class="col-6">

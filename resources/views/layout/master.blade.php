@@ -22,7 +22,7 @@
                             <a class="nav-link @yield('activeDashboard')" href="{{ url('dashboard') }}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link @yield('activeAktivitas')" href="{{ route('aktivitas') }}">Aktivitas</a>
+                            <a class="nav-link @yield('activeAktivitas')" href="{{ url('aktivitas') }}">Aktivitas</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link @yield('activeMateri')" href="{{ url('materi') }}">Materi</a>
@@ -41,6 +41,11 @@
                     <div class="d-flex justify-content-end" role="search">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             @auth
+                            <li class="nav-item">
+                                @if(in_array($userRole, ['admin', 'guru']))
+                                    <a href="{{ url('AdminDashboard') }}" class="btn btn-secondary">Dashboard Admin</a>
+                                @endif
+                            </li>
                             <li class="nav-item">
                                 <a href="{{ url('logout') }}" class="nav-link">Logout</a>
                             </li>

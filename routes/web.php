@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MuridController;
 use App\Http\Controllers\SesiController;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,23 +16,43 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', [AdminController::class, 'index']);
-Route::get('/login', [SesiController::class, 'login'])->name('login');
-Route::post('/login', [SesiController::class, 'loginProses']);
-Route::get('registrasi', function(){ return view('register');})->name('register');
-Route::post('registrasi-akun', [SesiController::class, 'registrasi']);
-
-Route::get('/logout', [SesiController::class, 'logout']);
-
-Route::get('dashboard', function () {
-    return view('dashboard');
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', [SesiController::class, 'index'])->name('awal');
+    Route::get('/login', [SesiController::class, 'login'])->name('login');
+    Route::post('/login', [SesiController::class, 'loginProses']);
+    Route::get('registrasi', function(){ return view('register');})->name('register');
+    Route::post('registrasi-akun', [SesiController::class, 'registrasi']);
 });
 
+Route::get('/logout', [SesiController::class, 'logout']);
+Route::get('/home', function () {
+    return redirect('')->route('awal');
+});
+Route::get('dashboard', [SesiController::class, 'dashboard']);
+Route::get('AdminDashboard', [AdminController::class, 'index']);
+
+Route::get('kategori', [AdminController::class, 'kategori']);
+Route::get('kategori/tambahkategori', [AdminController::class, 'tambahkategori']);
+Route::get('kategori/editkategori/', [AdminController::class, 'editkategori']);
+Route::get('kategori/hapuskategori/{id}', [AdminController::class, 'hapuskategori']);
+
+Route::get('kuismaster', [AdminController::class, 'kuismaster']);
+Route::get('kuismaster/tambahkuis', [AdminController::class, 'tambahkuis']);
+Route::get('kuismaster/editkuis', [AdminController::class, 'editkuis']);
+Route::get('kuismaster/hapuskuis/{id}', [AdminController::class, 'editkuis']);
+Route::get('kuismaster/tambahpertanyaan/{id}', [AdminController::class, 'tambahPertanyaan']);
+Route::get('kuismaster/tambahpertanyaanbaru', [AdminController::class, 'tambahPertanyaanBaru']);
+Route::get('kuismaster/editpertanyaanbaru', [AdminController::class, 'editPertanyaanBaru']);
+Route::get('kuismaster/hapuspertanyaanbaru/{id}', [AdminController::class, 'hapusPertanyaanBaru']);
+
+
+
 // Aktivitas
-Route::get('aktivitas/selesai', function () {
-    return view('aktivitas.selesai');
-})->name('aktivitas');
+Route::get('aktivitas', [MuridController::class, 'aktivitas']);
+
+// Route::get('aktivitas/selesai', function () {
+//     return view('aktivitas.selesai');
+// })->name('aktivitas');
 Route::get('aktivitas/berjalan', function () {
     return view('aktivitas.berjalan');
 })->name('berjalan');
