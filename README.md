@@ -42,7 +42,7 @@ Laravel 10 OneLEarn dibuat oleh :
 **Clone Repository**
 
 ```bash
-git clone https://github.com/TegarFtr/perpustakaan.git
+git clone https://github.com/TegarFtr/educraft.git
 ```
 
 **Download zip**
