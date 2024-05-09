@@ -1,89 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Simpus | Login</title>
-  <link rel="icon" type="icon" href="{{ asset('AdminLTE') }}/dist/img/tutwuri.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Onelearn | Login</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('resources/css/stylesuser.css') }}">
+    <script src="{{ asset('resources/js/loginuser.js') }}"></script>
+    <style>
+        .container {
+            background-image: url('img/background2.gif');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE') }}/dist/css/adminlte.min.css">
+        }
+    </style>
 </head>
-<body class="hold-transition login-page">
-<div class="login-box">
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-header text-center">
-        <img class="mt-3" src="{{ asset('img/logo1.png') }}" alt="TutWuriHandayani" height="100" width="100">
-        <div class="h1"><b>OneLearn</b></div>
-        <div class="h5">Satu Aplikasi Banyak Pengetahuan</div>
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Selamat datang di Halaman Login One Learn, pintu gerbang menuju dunia pembelajaran yang terintegrasi dan efisien!. <br>  <b>Silahkan masuk untuk menggunakan OneLearn</b></p>
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $eror)
-                        <li>{{ $eror }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-      <form action="" method="post">
-        @csrf
-        <div class="input-group mb-3">
-          <input type="text" name="username" class="form-control" placeholder="Username" value="{{ old('username') }}">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password" value="{{ old('password') }}">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Masuk</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-      <p class="text-center mt-3">- ATAU -</p>
-      <div class="social-auth-links text-center text-white mt-2 mb-3">
-        <a href="{{ url('registrasi') }}" class="btn btn-block btn-warning" style="color: white">
-          <i class="fas fa-user-plus"></i> Daftar Untuk Menjadi Member
-        </a>
-      </div>
-    </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
-</div>
-<!-- /.login-box -->
 
-<!-- jQuery -->
-<script src="{{ asset('AdminLTE') }}/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('AdminLTE') }}/dist/js/adminlte.min.js"></script>
+<body>
+    <div class="wrapper">
+        <div class="container background-gif">
+            <div class="form-container login-container">
+                <form action="{{ url('login') }}" method="post">
+                    @csrf
+                    <h1>Login</h1>
+                    @error('error')
+                        <div class="alert alert-danger">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password"name="password" placeholder="Password" required>
+                    <button type="submit">Login</button>
+                    <span>Atau gunakan akun sosial</span>
+                    <div class="social-container">
+                        <a href="#" class="social"><i class="lni lni-facebook-fill"></i></a>
+                        <a href="#" class="social"><i class="lni lni-google"></i></a>
+                        <a href="#" class="social"><i class="lni lni-linkedin-original"></i></a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="overlay-container">
+                <div class="overlay">
+                    <!-- Panel kiri tetap mengarahkan ke login -->
+                    <div class="overlay-panel overlay-left">
+                        <h1>Selamat Datang</h1>
+                        <p>Jika sudah punya akun, klik Login.</p>
+                        <a href="{{ url('login') }}" class="ghost">Login</a>
+                    </div>
+
+                    <div class="overlay-panel overlay-right">
+                        <h1>Mulai Perjalanan Anda</h1>
+                        <p>Ingin bergabung? Klik tombol di bawah ini untuk mendaftar.</p>
+                        <a href="{{ url('registrasi') }}" class="ghost register-button">Register</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ asset('AdminLTE') }}/plugins/jquery/jquery.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('AdminLTE') }}/dist/js/adminlte.min.js"></script>
 </body>
+
 </html>

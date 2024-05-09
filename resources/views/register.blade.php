@@ -1,99 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Simpus | Registrasi</title>
-  <link rel="icon" type="icon" href="{{ asset('AdminLTE') }}/dist/img/tutwuri.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Onelearn | Registrasi</title>
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('resources/css/stylesuser.css') }}">
+    <script src="{{ asset('resources/js/loginuser.js') }}"></script>
+    <style>
+        .container {
+            background-image: url('img/background2.gif');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE') }}/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{ asset('AdminLTE') }}/dist/css/adminlte.min.css">
+        }
+    </style>
 </head>
-<body class="hold-transition register-page">
-<div class="register-box">
-  <div class="card">
-    <div class="card-header text-center">
-        <img class="mt-3" src="{{ asset('img/logo1.png') }}" alt="TutWuriHandayani" height="100" width="100">
-        <div class="h1"><b>OneLearn</b></div>
-        <div class="h5">Satu Aplikasi Banyak Pengetahuan</div>
-    </div>
-    <div class="card-body">
-      <p class="login-box-msg">Selamat datang di Halaman Registrasi OneLearn, tempat pembuka pintu akses ke dunia pendidikan terhubung dan inovatif! Buat akun pribadi Anda dengan mudah untuk mengakses layanan OneLearn dengan cepat.</p>
 
-      <form action="{{ url('registrasi-akun') }}" method="post">
-        @csrf
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="nama" placeholder="Masukkan Nama Lengkap">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="nis" placeholder="Masukkan NIS">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="username" placeholder="Masukkan Username">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password1" placeholder="Masukkan Password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password2" placeholder="Masukkan Ulang password">
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- /.col -->
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary btn-block">Daftar</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-      <p class="text-center mt-3">- ATAU -</p>
-      <div class="social-auth-links text-center">
-        <a href="{{ route('login') }}" class="btn btn-block btn-success">
-            <i class="fas fa-arrow-circle-right"></i>
-            Sudah menjadi member ? Masuk
-        </a>
-      </div>
-    </div>
-    <!-- /.form-box -->
-  </div><!-- /.card -->
-</div>
-<!-- /.register-box -->
+<body>
+    <div class="wrapper">
+        <div class="container" id="container">
+            <div class="form-container register-container">
+                <form action="{{ url('registrasi-akun') }}" method="post">
+                    @csrf
+                    <h1>Registrasi</h1>
 
-<!-- jQuery -->
-<script src="{{ asset('AdminLTE') }}/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
-<script src="{{ asset('AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- AdminLTE App -->
-<script src="{{ asset('AdminLTE') }}/dist/js/adminlte.min.js"></script>
+                    <input type="text" name="nama" placeholder="Nama Lengkap" required>
+                    <input type="text" name="nis" placeholder="NIS" required>
+                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="password" name="password1" placeholder="Password" required>
+                    <input type="password" name="password2" placeholder="Konfirmasi Password" required>
+                    <button type="submit">Registrasi</button>
+                    <a href="{{ url('login') }}" class="btn btn-success">Sudah punya akun? Login</a>
+                </form>
+            </div>
+
+            <div class="overlay-container">
+                <div class="overlay">
+                    <div class="overlay-panel overlay-left">
+                        <h1>Hello teman-teman</h1>
+                        <p>Jika Anda sudah punya akun, klik tombol untuk login. Jika Belum Silahkan Untuk Registrasi</p>
+                        <a href="{{ url('login') }}" class="ghost login-button">Login</a>
+                    </div>
+                    <div class="overlay-panel overlay-right">
+                        <h1>Mulai Perjalanan</h1>
+                        <p>Jika belum punya akun, bergabunglah dengan kami.</p>
+                        <button class="ghost" id="register">Mulai</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("register").onclick = function() {
+                document.getElementById("container").classList.add("right-panel-active");
+            };
+            document.getElementById("login").onclick = function() {
+                document.getElementById("container").classList.remove("right-panel-active");
+            };
+        </script>
+        <script src="{{ asset('AdminLTE') }}/plugins/jquery/jquery.min.js"></script>
+        <script src="{{ asset('AdminLTE') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="{{ asset('AdminLTE') }}/dist/js/adminlte.min.js"></script>
+    </div>
 </body>
+
 </html>
