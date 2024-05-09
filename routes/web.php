@@ -50,48 +50,12 @@ Route::get('kuismaster/hapuspertanyaanbaru/{id}', [AdminController::class, 'hapu
 // Aktivitas
 Route::get('aktivitas', [MuridController::class, 'aktivitas']);
 
-// Route::get('aktivitas/selesai', function () {
-//     return view('aktivitas.selesai');
-// })->name('aktivitas');
-Route::get('aktivitas/berjalan', function () {
-    return view('aktivitas.berjalan');
-})->name('berjalan');
-
 // Materi
-Route::get('materi', function () {
-    return view('materi.semua');
-});
-Route::get('materi/sejarah', function () {
-    return view('materi.sejarah');
-})->name('sejarah');
-Route::get('materi/ekonomi', function () {
-    return view('materi.ekonomi');
-})->name('ekonomi');
-Route::get('materi/geografi', function () {
-    return view('materi.geografi');
-})->name('geografi');
-Route::get('materi/sosiologi', function () {
-    return view('materi.sosiologi');
-})->name('sosiologi');
+Route::get('materi', [MuridController::class, 'materi']);
 
 // Kuis
-Route::get('kuis', function () {
-    return view('kuis.semua');
-});
-Route::get('kuis/sejarah', function () {
-    return view('kuis.sejarah');
-})->name('Kuissejarah');
-Route::get('kuis/ekonomi', function () {
-    return view('kuis.ekonomi');
-})->name('Kuisekonomi');
-Route::get('kuis/geografi', function () {
-    return view('kuis.geografi');
-})->name('Kuisgeografi');
-Route::get('kuis/sosiologi', function () {
-    return view('kuis.sosiologi');
-})->name('Kuissosiologi');
+Route::get('kuis', [MuridController::class, 'kuis']);
 
 // Kelas
-Route::get('kelas', function () {
-    return view('kelas.kelas');
-});
+Route::get('kelas', [MuridController::class, 'kelas']);
+

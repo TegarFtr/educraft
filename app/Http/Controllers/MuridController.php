@@ -15,6 +15,39 @@ class MuridController extends Controller
             $userRole = auth()->user()->role;
         }
 
-        return view('aktivitas.selesai', compact('userRole'));
+        return view('aktivitas.aktivitas', compact('userRole'));
+    }
+    public function materi(){
+        // Set default value for $userRole
+        $userRole = null;
+
+        // Check if the user is authenticated
+        if(auth()->check()) {
+            $userRole = auth()->user()->role;
+        }
+
+        return view('materi.materi', compact('userRole'));
+    }
+    public function kuis(){
+        // Set default value for $userRole
+        $userRole = null;
+
+        // Check if the user is authenticated
+        if(auth()->check()) {
+            $userRole = auth()->user()->role;
+        }
+
+        return view('kuis.kuis', compact('userRole'));
+    }
+    public function kelas(){
+        // Set default value for $userRole
+        $userRole = null;
+
+        // Check if the user is authenticated
+        if(auth()->check()) {
+            $userRole = auth()->user()->role;
+        }
+
+        return view('kelas.kelas', compact('userRole'));
     }
 }
