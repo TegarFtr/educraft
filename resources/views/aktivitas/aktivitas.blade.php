@@ -12,16 +12,16 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav nav-underline navbar-nav me-auto mb-2 mb-lg-0" id="custom-tabs-four-tab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="custom-tabs-four-home-tab" data-toggle="pill" href="#custom-tabs-four-home" role="tab" aria-controls="custom-tabs-four-home" aria-selected="true">Selesai</a>
+                            <a class="nav-link active" id="custom-tabs-selesai-tab" data-toggle="pill" href="#custom-tabs-selesai" role="tab" aria-controls="custom-tabs-selesai" aria-selected="true">Selesai</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="custom-tabs-four-profile-tab" data-toggle="pill" href="#custom-tabs-four-profile" role="tab" aria-controls="custom-tabs-four-profile" aria-selected="false">Sedang Berjalan</a>
+                            <a class="nav-link" id="custom-tabs-berjalan-tab" data-toggle="pill" href="#custom-tabs-berjalan" role="tab" aria-controls="custom-tabs-berjalan" aria-selected="false">Sedang Berjalan</a>
                         </li>
                         </ul>
                     </div>
                 </nav>
                 <div class="tab-content" id="custom-tabs-four-tabContent">
-                  <div class="tab-pane fade show active" id="custom-tabs-four-home" role="tabpanel" aria-labelledby="custom-tabs-four-home-tab">
+                  <div class="tab-pane fade show active" id="custom-tabs-selesai" role="tabpanel" aria-labelledby="custom-tabs-selesai-tab">
                     <div class="col-3 mt-2">
                         <div class="card border-secondary">
                             <div class="card-header">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                   </div>
-                  <div class="tab-pane fade" id="custom-tabs-four-profile" role="tabpanel" aria-labelledby="custom-tabs-four-profile-tab">
+                  <div class="tab-pane fade" id="custom-tabs-berjalan" role="tabpanel" aria-labelledby="custom-tabs-berjalan-tab">
                     <div class="col-3 mt-2">
                         <div class="card border-secondary">
                             <div class="card-header">
