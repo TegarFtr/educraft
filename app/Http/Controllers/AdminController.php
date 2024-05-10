@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category_master;
 use App\Models\Exam_master;
+use App\Models\Materi;
 use App\Models\Question_master;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -192,5 +193,11 @@ class AdminController extends Controller
         $q->delete();
 
         return redirect(url('kuismaster/tambahpertanyaan/'.$exam_id));
+    }
+
+    public function materi(){
+        $materi = Materi::get();
+        $category = Category_master::where('status','1')->get()->toArray();
+        return view('admin.materimaster', compact('materi', 'category'));
     }
 }

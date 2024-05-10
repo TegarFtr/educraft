@@ -1,11 +1,10 @@
 @extends('admin.layout.master')
-@section('activeKuis', 'active')
+@section('activeMateri', 'active')
 
 @section('contentAdmin')
-
 <section class="content-header">
     <h1 style="font-family: 'Quicksand', sans-serif; font-weight: bold;">
-        Kuis Master
+        Materi Master
         <small>
             <script type='text/javascript'>
                 var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -23,6 +22,7 @@
         </small>
     </h1>
 </section>
+
 <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -30,7 +30,7 @@
           <!-- Default box -->
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Kuis Master</h3>
+              <h3 class="card-title">Materi Master</h3>
 
               <div class="card-tools">
                     <a class="btn btn-info btn-sm" href="javascript:;" data-toggle="modal" data-target="#myModal">Add new</a>
@@ -42,34 +42,35 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Deskripsi</th>
                             <th>Category</th>
-                            <th>Exam Date</th>
-                            <th>Status</th>
+                            <th>Sampul</th>
+                            <th>Akses</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                       @foreach ($exams as $key=>$exam)
+                       @foreach ($materi as $key=>$d)
                            <tr>
                                <td>{{ $key+1}}</td>
-                               <td>{{ $exam['title']}}</td>
-                               <td>{{ $exam['cat_name']}}</td>
-                               <td>{{ $exam['exam_date']}}</td>
-                               <td><input type="checkbox" class="exam_status" data-id="{{ $exam['id']}}" <?php if($exam['status']==1){ echo "checked";} ?> name="status"></td>
+                               <td>{{ $d['title']}}</td>
+                               <td>{{ $d['deskripsi']}}</td>
+                               <td>{{ $d['category']}}</td>
+                               <td>{{ $d['sampul']}}</td>
+                               <td>{{ $d['akses']}}</td>
                                <td>
-                                    <a href="javascript:;" class="btn btn-info" data-toggle="modal" data-target="#editKuis{{ $exam['id'] }}">Edit</a>
-                                    <a href="javascript:;" class="btn btn-danger" data-toggle="modal" data-target="#hapusKuis{{ $exam['id'] }}">Hapus</a>
-                                    <a href="{{ url('kuismaster/tambahpertanyaan/'.$exam['id'])}}" class="btn btn-primary">Tambah Pertanyaan</a>
+                                    <a href="javascript:;" class="btn btn-info" data-toggle="modal" data-target="#editKuis{{ $d['id'] }}">Edit</a>
+                                    <a href="javascript:;" class="btn btn-danger" data-toggle="modal" data-target="#hapusKuis{{ $d['id'] }}">Hapus</a>
                                </td>
                            </tr>
 
-                           <div class="modal fade" id="editKuis{{ $exam['id'] }}" role="dialog">
+                           <div class="modal fade" id="editKuis{{ $d['id'] }}" role="dialog">
                                 <div class="modal-dialog">
 
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                    <h4 class="modal-title">Add new Exam</h4>
+                                    <h4 class="modal-title">Add new Materi</h4>
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
@@ -79,20 +80,20 @@
                                                     <div class="form-group">
                                                         <label for="">Enter title</label>
                                                         {{ csrf_field()}}
-                                                        <input type="hidden" name="id" value="{{ $exam['id'] }}">
-                                                        <input type="text" required="required" name="title" value="{{ $exam['title'] }}" placeholder="Enter title" class="form-control">
+                                                        <input type="hidden" name="id" value="{{ $d['id'] }}">
+                                                        <input type="text" required="required" name="title" value="{{ $d['title'] }}" placeholder="Enter title" class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
                                                         <label for="">Enter Date</label>
-                                                        <input type="date" required="required" name="exam_date" value="{{ $exam['exam_date'] }}"  class="form-control">
+                                                        <input type="date" required="required" name="exam_date" value="{{ $d['d_date'] }}"  class="form-control">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-12">
                                                 <div class="form-group">
                                                     <label for="">Enter duration (in minutes)</label>
-                                                    <input type="text" required="required" name="exam_duration" value="{{ $exam['exam_duration'] }}" class="form-control">
+                                                    <input type="text" required="required" name="exam_duration" value="{{ $d['exam_duration'] }}" class="form-control">
                                                 </div>
                                             </div>
                                                 <div class="col-sm-12">
@@ -119,7 +120,7 @@
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="hapusKuis{{ $exam['id'] }}">
+                            <div class="modal fade" id="hapusKuis{{ $d['id'] }}">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -127,11 +128,11 @@
                                     </div>
                                     <div class="modal-body">
                                         <h5 class="text-center">Apakah anda yakin akan menghapus data ini? <br>
-                                            <span class="text-danger">{{ $exam['title'] }}</span>
+                                            <span class="text-danger">{{ $d['title'] }}</span>
                                         </h5>
                                     </div>
                                     <div class="modal-footer">
-                                        <form action="{{ url('kuismaster/hapuskuis/'.$exam['id']) }}">
+                                        <form action="{{ url('kuismaster/hapuskuis/'.$d['id']) }}">
                                             <button type="submit" class="btn btn-danger" name="hsimpan">Hapus</button>
                                             <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
                                         </form>
@@ -171,23 +172,17 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="">Enter title</label>
+                            <label for="">Judul Materi</label>
                             {{ csrf_field()}}
-                            <input type="text" required="required" name="title" placeholder="Enter title" class="form-control">
+                            <input type="text" required="required" name="title" placeholder="Masukkan Judul Materi" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
-                            <label for="">Enter Date</label>
-                            <input type="date" required="required" name="exam_date"  class="form-control">
+                            <label for="">Deskripsi Materi</label>
+                            <input type="text" required="required" name="deskripsi" placeholder="Masukkan Deskripsi Materi"  class="form-control">
                         </div>
                     </div>
-                    <div class="col-sm-12">
-                      <div class="form-group">
-                          <label for="">Enter duration (in minutes)</label>
-                          <input type="text" required="required" name="exam_duration"  class="form-control">
-                      </div>
-                  </div>
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="">Select category</label>
@@ -201,6 +196,30 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
+                            <label for="">Sampul Materi</label>
+                            <input type="file" required="required" name="sampul"  class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="">Akses</label>
+                            <select class="form-control" required="required" name="exam_category" onchange="showHideKelas(this.value)">
+                                <option value="">Select</option>
+                                <option value="umum">Umum</option>
+                                <option value="privat">Privat</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12" id="kelasDiv" style="display:none;">
+                        <div class="form-group">
+                            <label for="">Kelas</label>
+                            <input type="text" required="required" name="kelas" placeholder="Masukkan Kode Kelas" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group">
                             <button class="btn btn-primary">Add</button>
                         </div>
                     </div>
@@ -212,3 +231,16 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    function showHideKelas(value) {
+        var kelasDiv = document.getElementById("kelasDiv");
+        if (value === "privat") {
+            kelasDiv.style.display = "block";
+        } else {
+            kelasDiv.style.display = "none";
+        }
+    }
+</script>
+@endpush

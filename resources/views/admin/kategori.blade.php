@@ -4,7 +4,7 @@
 @section('contentAdmin')
 <section class="content-header">
     <h1 style="font-family: 'Quicksand', sans-serif; font-weight: bold;">
-        Kuis Master
+        Kategori
         <small>
             <script type='text/javascript'>
                 var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
@@ -29,7 +29,7 @@
           <!-- Default box -->
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Title</h3>
+              <h3 class="card-title">Kategori</h3>
 
               <div class="card-tools">
                     <a class="btn btn-info btn-sm" href="javascript:;" data-toggle="modal" data-target="#myModal">Add new</a>

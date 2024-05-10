@@ -17,6 +17,7 @@
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset('AdminLTE') }}/dist/css/adminlte.min.css">
   <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  @stack('style')
 </head>
 <body class="hold-transition light-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
 <div class="wrapper">
@@ -33,6 +34,9 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
+        <li class="nav-item">
+            <a href="{{ url('dashboard') }}" class="btn btn-secondary">Dashboard User</a>
+        </li>
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
           <i class="fas fa-search"></i>
@@ -61,8 +65,7 @@
   <aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link text-center text-bold">
-      <img src="{{ asset('AdminLTE') }}/dist/img/tutwuri.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-      <span class="brand-text font-weight-bold">PERPUSTAKAAN</span>
+      <img src="{{ asset('img/logoOnelearn.png') }}" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
     </a>
 
     <!-- Sidebar -->
@@ -81,7 +84,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <li class="nav-item">
-            <a href="{{ url('dashboard') }}" class="nav-link @yield('activeDashboard')">
+            <a href="{{ url('AdminDashboard') }}" class="nav-link @yield('activeDashboard')">
               <i class="nav-icon fas fa-home"></i>
               <p>
                 Dashboard
@@ -110,45 +113,24 @@
               </p>
             </a>
           </li>
-
-        <li class="nav-header">MENU USER</li>
-            <li class="nav-item">
-                <a href="{{ url('peminjaman') }}" class="nav-link @yield('activePinjam')">
-                    <i class="nav-icon fas fa-file"></i>
-                    <p>Peminjaman Buku</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('kembali') }}" class="nav-link @yield('activeKembali')">
-                    <i class="nav-icon fas fa-file"></i>
-                    <p>Pengembalian Buku</p>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ url('list-buku') }}" class="nav-link @yield('activeListBuku')">
-                    <i class="nav-icon fas fa-book"></i>
-                    <p>List Buku</p>
-                </a>
-            </li>
-
-          <li class="nav-header">MENU LAIN</li>
           <li class="nav-item">
-            <a href="{{ url('profile') }}" class="nav-link @yield('activeProfile')">
-              <i class="fa-solid nav-icon fa-id-card"></i>
+            <a href="{{ url('materimaster') }}" class="nav-link @yield('activeMateri')">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                Profile Aplikasi
+                Materi Master
+                <i class="right fas "></i>
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('petugas') }}" class="nav-link @yield('activeAdmin')">
-              <i class="nav-icon fas fa-user"></i>
+            <a href="{{ url('kuismaster') }}" class="nav-link @yield('activeKelas')">
+              <i class="nav-icon fas fa-book"></i>
               <p>
-                Petugas
+                Kelas
+                <i class="right fas "></i>
               </p>
             </a>
           </li>
-
 
           <li class="nav-header">LANJUTAN</li>
           <li class="nav-item">
@@ -234,6 +216,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     @stack('scripts')
-
 </body>
 </html>

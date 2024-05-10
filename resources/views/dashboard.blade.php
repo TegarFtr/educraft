@@ -46,7 +46,7 @@
             <a href="{{ url('aktivitas') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
         <div class="col-2 mt-2">
-            <div class="card border-secondary">
+            <div class="card border-secondary" >
                 <div class="card-header">
                     <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
                 </div>
