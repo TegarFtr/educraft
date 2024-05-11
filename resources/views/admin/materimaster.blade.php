@@ -62,7 +62,9 @@
                                <td>{{ $d['title']}}</td>
                                <td>{{ $d['deskripsi']}}</td>
                                <td>{{ $d['category']}}</td>
-                               <td>{{ $d['sampul']}}</td>
+                               <td>
+                                    <img src="{{ asset($d['sampul']) }}" alt="" width="200">
+                               </td>
                                <td>{{ $d['akses']}}</td>
                                <td>
                                     <a href="javascript:;" class="btn btn-info" data-toggle="modal" data-target="#editKuis{{ $d['id'] }}">Edit</a>
