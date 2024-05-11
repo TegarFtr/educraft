@@ -46,6 +46,8 @@ Route::get('kuismaster/editpertanyaanbaru', [AdminController::class, 'editPertan
 Route::get('kuismaster/hapuspertanyaanbaru/{id}', [AdminController::class, 'hapusPertanyaanBaru']);
 
 Route::get('materimaster', [AdminController::class, 'materi']);
+Route::get('tambah-materi', [AdminController::class, 'tambahMateri']);
+Route::post('tambah-materi/store', [AdminController::class, 'storeMateri']);
 
 // Aktivitas
 Route::get('aktivitas', [MuridController::class, 'aktivitas']);

@@ -13,5 +13,5 @@ class Materi extends Model
 
     protected $primaryKey="id";
 
-    protected $fillable=['title','deskripsi','category','file','akses'];
+    protected $fillable=['title','deskripsi','category','sampul','file','akses'];
 }

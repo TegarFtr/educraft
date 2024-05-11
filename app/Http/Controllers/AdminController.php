@@ -200,4 +200,67 @@ class AdminController extends Controller
         $category = Category_master::where('status','1')->get()->toArray();
         return view('admin.materimaster', compact('materi', 'category'));
     }
+    public function tambahMateri(){
+        $category = Category_master::where('status','1')->get()->toArray();
+        return view('admin.tambahmateri', compact('category'));
+    }
+    public function storeMateri(Request $request){
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'deskripsi' => 'required',
+            'kategori' => 'required',
+            'sampul' => 'required',
+            'akses' => 'required',
+            'kelas' => 'nullable',
+            'filemateri' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator->errors()->first());
+        }
+
+        $requestData = $request->all();
+
+        // Validate and store the image/sampul
+        if ($request->hasFile('sampul')) {
+            $fileName = time() . "-" . $request->file('sampul')->getClientOriginalName();
+            $path = $request->file('sampul')->storeAs('sampul', $fileName, 'public');
+            $requestData["sampul"] = '/storage/' . $path;
+        } else {
+            // Handle the case where no file is uploaded
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors('Please upload a valid file for the sampul.');
+        }
+
+        if ($request->hasFile('filemateri')) {
+            $fileName = time() . "-" . $request->file('filemateri')->getClientOriginalName();
+            $path = $request->file('filemateri')->storeAs('filemateri', $fileName, 'public');
+            $requestData["filemateri"] = '/storage/' . $path;
+        } else {
+            // Handle the case where no file is uploaded
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors('Please upload a valid file for the filemateri.');
+        }
+
+        $requestData['title'] = $request->title;
+        $requestData['deskripsi'] = $request->deskripsi;
+        $requestData['category'] = $request->kategori;
+        $requestData['file'] = $requestData["filemateri"];
+        $requestData['akses'] = $request->akses;
+        $requestData['kelas'] = $request->kelas;
+
+        unset($requestData['filemateri']);
+
+        Materi::create($requestData);
+
+        return redirect(url('materimaster'))->with('success', 'Materi berhasil ditambahkan!');
+    }
+
 }

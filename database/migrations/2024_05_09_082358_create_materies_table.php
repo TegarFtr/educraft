@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('sampul')->nullable();
             $table->string('file')->nullable();
             $table->string('akses')->nullable();
+            $table->string('kelas')->nullable();
             $table->timestamps();
         });
     }

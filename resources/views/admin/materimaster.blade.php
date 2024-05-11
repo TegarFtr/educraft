@@ -22,7 +22,13 @@
         </small>
     </h1>
 </section>
-
+<div class="container-fluid">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+</div>
 <section class="content">
     <div class="container-fluid">
       <div class="row">
@@ -33,7 +39,7 @@
               <h3 class="card-title">Materi Master</h3>
 
               <div class="card-tools">
-                    <a class="btn btn-info btn-sm" href="javascript:;" data-toggle="modal" data-target="#myModal">Add new</a>
+                    <a class="btn btn-info btn-sm" href="{{ url('tambah-materi') }}">Add new</a>
               </div>
             </div>
             <div class="card-body">
@@ -168,7 +174,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('kuismaster/tambahkuis')}}" class="database_operation">
+            <form action="{{ url('kuismaster/tambahkuis')}}" class="database_operation">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
