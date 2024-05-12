@@ -29,63 +29,186 @@
             </nav>
             <div class="tab-content" id="custom-tabs-four-tabContent">
               <div class="tab-pane fade show active" id="custom-tabs-semua-materi" role="tabpanel" aria-labelledby="custom-tabs-semua-materi-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
+                <div class="row">
+                    @foreach ($materi as $key => $m)
+                        <div class="col-3 mt-2">
+                            <a href="javascript:;" data-toggle="modal" data-target="#materisemua{{ $m->id }}">
+                                <div class="card border-secondary" style="height: 220px">
+                                    <div class="card-header">
+                                        <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ $m->title }}</h3>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">A</p>
+                        <div class="modal fade" id="materisemua{{ $m->id }}">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <img src="{{ asset($m->sampul) }}" alt="" width="465">
+                                </div>
+                                <div class="modal-body">
+                                    <h1 class="text-center"><b>{{ $m->title }}</b></h1>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                    </div>
+                    @endforeach
                 </div>
               </div>
               <div class="tab-pane fade" id="custom-tabs-sejarah" role="tabpanel" aria-labelledby="custom-tabs-sejarah-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">B.</p>
-                        </div>
-                    </div>
+                <div class="row">
+                    @foreach ($materi as $key => $m)
+                        @if($m->category == 1)
+                            <div class="col-3 mt-2">
+                                <a href="javascript:;" data-toggle="modal" data-target="#materisejarah{{ $m->id }}">
+                                    <div class="card border-secondary" style="height: 220px">
+                                        <div class="card-header">
+                                            <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                        </div>
+                                        <div class="card-body">
+                                            <h3 class="card-title">{{ $m->title }}</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="modal fade" id="materisejarah{{ $m->id }}">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <img src="{{ asset($m->sampul) }}" alt="" width="465">
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1 class="text-center"><b>{{ $m->title }}</b></h1>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
               </div>
               <div class="tab-pane fade" id="custom-tabs-sosiologi" role="tabpanel" aria-labelledby="custom-tabs-sosiologi-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">C.</p>
-                        </div>
-                    </div>
+                <div class="row">
+                    @foreach ($materi as $key => $m)
+                        @if($m->category == 3)
+                            <div class="col-3 mt-2">
+                                <a href="javascript:;" data-toggle="modal" data-target="#materisosiologi{{ $m->id }}">
+                                    <div class="card border-secondary" style="height: 220px">
+                                        <div class="card-header">
+                                            <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                        </div>
+                                        <div class="card-body">
+                                            <h3 class="card-title">{{ $m->title }}</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="modal fade" id="materisosiologi{{ $m->id }}">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <img src="{{ asset($m->sampul) }}" alt="" width="465">
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1 class="text-center"><b>{{ $m->title }}</b></h1>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
               </div>
               <div class="tab-pane fade" id="custom-tabs-geografi" role="tabpanel" aria-labelledby="custom-tabs-geografi-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">D.</p>
-                        </div>
-                    </div>
+                <div class="row">
+                    @foreach ($materi as $key => $m)
+                        @if($m->category == 2)
+                            <div class="col-3 mt-2">
+                                <a href="javascript:;" data-toggle="modal" data-target="#materigeografi{{ $m->id }}">
+                                    <div class="card border-secondary" style="height: 220px">
+                                        <div class="card-header">
+                                            <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                        </div>
+                                        <div class="card-body">
+                                            <h3 class="card-title">{{ $m->title }}</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="modal fade" id="materigeografi{{ $m->id }}">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <img src="{{ asset($m->sampul) }}" alt="" width="465">
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1 class="text-center"><b>{{ $m->title }}</b></h1>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
               </div>
               <div class="tab-pane fade" id="custom-tabs-ekonomi" role="tabpanel" aria-labelledby="custom-tabs-ekonomi-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">E.</p>
-                        </div>
-                    </div>
+                <div class="row">
+                    @foreach ($materi as $key => $m)
+                        @if($m->category == 4)
+                            <div class="col-3 mt-2">
+                                <a href="javascript:;" data-toggle="modal" data-target="#materiekonomi{{ $m->id }}">
+                                    <div class="card border-secondary" style="height: 220px">
+                                        <div class="card-header">
+                                            <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                        </div>
+                                        <div class="card-body">
+                                            <h3 class="card-title">{{ $m->title }}</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="modal fade" id="materiekonomi{{ $m->id }}">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <img src="{{ asset($m->sampul) }}" alt="" width="465">
+                                    </div>
+                                    <div class="modal-body">
+                                        <h1 class="text-center"><b>{{ $m->title }}</b></h1>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                    </div>
+                                </div>
+                                <!-- /.modal-content -->
+                                </div>
+                                <!-- /.modal-dialog -->
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
               </div>
             </div>

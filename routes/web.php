@@ -28,7 +28,7 @@ Route::get('/logout', [SesiController::class, 'logout']);
 Route::get('/home', function () {
     return redirect('')->route('awal');
 });
-Route::get('dashboard', [SesiController::class, 'dashboard']);
+Route::get('dashboard', [MuridController::class, 'dashboard']);
 Route::get('AdminDashboard', [AdminController::class, 'index']);
 
 Route::get('kategori', [AdminController::class, 'kategori']);
@@ -54,6 +54,8 @@ Route::get('aktivitas', [MuridController::class, 'aktivitas']);
 
 // Materi
 Route::get('materi', [MuridController::class, 'materi']);
+Route::get('materi/bacamateri/{id}', [MuridController::class, 'bacamateri']);
+Route::get('materi/bacamateri/lihatpdf/{id}', [MuridController::class, 'viewPDF']);
 
 // Kuis
 Route::get('kuis', [MuridController::class, 'kuis']);

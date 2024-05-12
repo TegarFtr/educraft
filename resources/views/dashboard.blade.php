@@ -42,7 +42,9 @@
 
     <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
-            <h2 class="mr-auto"><b> Aktivitas Terbaru</b></h2>
+            <div class="d-flex">
+                <img src="{{ asset('img/logoBintang.png') }}" width="35" height="35" alt=""><span><h2 class="mr-auto"><b> Aktivitas Terbaru </b></h2></span>
+            </div>
             <a href="{{ url('aktivitas') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
         <div class="col-2 mt-2">
@@ -55,106 +57,54 @@
                 </div>
             </div>
         </div>
-        <div class="col-2 mt-2">
-            <div class="card border-secondary" style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/math.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Perhitungan Gauss</h3>
-                </div>
-            </div>
-        </div><div class="col-2 mt-2">
-            <div class="card border-secondary" style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/sejarah.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Ilmu Singosari</h3>
-                </div>
-            </div>
-        </div><div class="col-2 mt-2">
-            <div class="card border-secondary" style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/sosio.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Tanah Candi</h3>
-                </div>
-            </div>
-        </div><div class="col-2 mt-2">
-            <div class="card border-secondary" style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/ekonomi.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Nilai Ekonomi</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-2 mt-2">
-            <div class="card border-secondary" style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/math.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Pengukuran Mata Uang</h3>
-                </div>
-            </div>
-        </div>
     </div>
 
     <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
-            <h2 class="mr-auto"><b> Materi </b></h2>
+            <div class="d-flex">
+                <img src="{{ asset('img/logoBintang.png') }}" width="35" height="35" alt=""><span><h2 class="mr-auto"><b> Materi </b></h2></span>
+            </div>
             <a href="{{ url('materi') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
-        <div class="col-3 mt-2">
-            <div class="card border-secondary" style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/dolar.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Pengukuran Kuadrat</h3>
-                </div>
+        @foreach ($materi as $key => $m)
+            <div class="col-3 mt-2">
+                <a href="javascript:;" data-toggle="modal" data-target="#dashboardmateri{{ $m->id }}">
+                    <div class="card border-secondary" style="height: 220px">
+                        <div class="card-header">
+                            <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ $m->title }}</h3>
+                        </div>
+                    </div>
+                </a>
             </div>
-        </div>
-        <div class="col-3 mt-2">
-            <div class="card border-secondary" style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/inflasi.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
+            <div class="modal fade" id="dashboardmateri{{ $m->id }}">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="{{ asset($m->sampul) }}" alt="" width="465">
+                    </div>
+                    <div class="modal-body">
+                        <h1 class="text-center"><b>{{ $m->title }}</b></h1>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <h3 class="card-title">Kenaikan Inflasi</h3>
+                <!-- /.modal-content -->
                 </div>
+                <!-- /.modal-dialog -->
             </div>
-        </div>
-        <div class="col-3 mt-2">
-            <div class="card border-secondary" style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/merdeka.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Rahasia Kemerdekaan</h3>
-                </div>
-            </div>
-        </div>
-        <div class="col-3 mt-2">
-            <div class="card border-secondary" style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/sosial.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Pengaruh Sosial</h3>
-                </div>
-            </div>
-        </div>
+        @endforeach
     </div>
 
 
     <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
-            <h2 class="mr-auto"><b> Kuis </b></h2>
+            <div class="d-flex">
+                <img src="{{ asset('img/logoBintang.png') }}" width="35" height="35" alt=""><span><h2 class="mr-auto"><b> Kuis </b></h2></span>
+            </div>
             <a href="{{ url('kuis') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
         <div class="col-3 mt-2">
@@ -168,44 +118,13 @@
             </div>
 
         </div>
-        <div class="col-3 mt-2">
-            <div class="card border-secondary"style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/sosial.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Pengaruh Sosial #2 </h3>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-3 mt-2">
-            <div class="card border-secondary"style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/inflasi.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Kenaikan Inflasi #1</h3>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-3 mt-2">
-            <div class="card border-secondary"style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/dolar.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Pengukuran Kuadrat #1</h3>
-                </div>
-            </div>
-
-        </div>
     </div>
 
     <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
-            <h3 class="mr-auto"><b> Kelas </b></h3>
+            <div class="d-flex">
+                <img src="{{ asset('img/logoBintang.png') }}" width="35" height="35" alt=""><span><h2 class="mr-auto"><b> Kelas </b></h2></span>
+            </div>
             <a href="{{ url('kelas') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
         <div class="col-3 mt-2">
@@ -217,37 +136,6 @@
                     <h3 class="card-title">Sosiologi</h3>
                 </div>
             </div>
-        </div>
-        <div class="col-3 mt-2">
-            <div class="card border-secondary"style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/astor.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Sejarah</h3>
-                </div>
-            </div>
-
-        </div> <div class="col-3 mt-2">
-            <div class="card border-secondary"style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/mati.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Matematika</h3>
-                </div>
-            </div>
-
-        </div> <div class="col-3 mt-2">
-            <div class="card border-secondary"style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/eko.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Ekonomi</h3>
-                </div>
-            </div>
-
         </div>
     </div>
 </div>

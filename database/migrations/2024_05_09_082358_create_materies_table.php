@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('materies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->nullable();
-            $table->string('deskripsi')->nullable();
+            $table->longText('deskripsi')->nullable();
             $table->string('category')->nullable();
             $table->string('sampul')->nullable();
             $table->string('file')->nullable();

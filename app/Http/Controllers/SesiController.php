@@ -13,18 +13,6 @@ class SesiController extends Controller
         return view('welcome');
     }
 
-    public function dashboard(){
-        // Set default value for $userRole
-        $userRole = null;
-
-        // Check if the user is authenticated
-        if(auth()->check()) {
-            $userRole = auth()->user()->role;
-        }
-
-        return view('dashboard', compact('userRole'));
-    }
-
     public function login(){
         return view('login');
     }
