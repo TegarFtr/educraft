@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exam_master;
+use App\Models\Hasilkuis;
 use App\Models\Materi;
+use App\Models\Question_master;
+use App\Models\User;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Nette\Utils\Strings;
 use PhpParser\Node\Expr\Cast\String_;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
@@ -22,8 +28,8 @@ class MuridController extends Controller
         }
 
         $materi = Materi::get();
-
-        return view('dashboard', compact('userRole', 'materi'));
+        $kuis =  Exam_master::get();
+        return view('dashboard', compact('userRole', 'materi', 'kuis'));
     }
 
     public function aktivitas(){
@@ -86,6 +92,73 @@ class MuridController extends Controller
 
         return view('kuis.kuis', compact('userRole'));
     }
+    public function startkuis(string $id){
+        // Set default value for $userRole
+        $userRole = null;
+
+        // Check if the user is authenticated
+        if(auth()->check()) {
+            $userRole = auth()->user()->role;
+        }
+        $question= Question_master::where('exam_id',$id)->get();
+
+        $exam=Exam_master::where('id',$id)->get()->first();
+        return view('kuis.mulaikuis', compact('userRole', 'question', 'exam'));
+    }
+
+    public function submit_questions(Request $request){
+
+        $yes_ans=0;
+        $no_ans=0;
+        $data= $request->all();
+        $result=array();
+        for($i=1;$i<=$request->index;$i++){
+
+            if(isset($data['question'.$i])){
+                $q=Question_master::where('id',$data['question'.$i])->first();
+
+                if($q->ans==$data['ans'.$i]){
+                    $result[$data['question'.$i]]='YES';
+                    $yes_ans++;
+                }else{
+                    $result[$data['question'.$i]]='NO';
+                    $no_ans++;
+                }
+            }
+        }
+
+
+        $res = new Hasilkuis();
+        $res->exam_id=$request->exam_id;
+        $res->user_id = Auth::id(); // Menggunakan session() dari Request
+        $res->yes_ans=$yes_ans;
+        $res->no_ans=$no_ans;
+        $res->result_json=json_encode($result);
+
+        $res->save(); // Tidak perlu echo di sini
+        return redirect(url('kuis/lihathasil/' . $request->exam_id));
+    }
+
+
+    public function view_result($id){
+
+        // Set default value for $userRole
+        $userRole = null;
+
+        // Check if the user is authenticated
+        if(auth()->check()) {
+            $userRole = auth()->user()->role;
+        }
+
+        $data['result_info'] = Hasilkuis::where('exam_id',$id)->where('user_id',Auth::id())->get()->first();
+
+        $data['student_info'] = User::where('id',Auth::id())->get()->first();
+
+        $data['exam_info']= Exam_master::where('id',$id)->get()->first();
+
+        return view('kuis.hasilkuis',$data, compact('userRole'));
+    }
+
     public function kelas(){
         // Set default value for $userRole
         $userRole = null;

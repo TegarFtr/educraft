@@ -59,6 +59,9 @@ Route::get('materi/bacamateri/lihatpdf/{id}', [MuridController::class, 'viewPDF'
 
 // Kuis
 Route::get('kuis', [MuridController::class, 'kuis']);
+Route::get('kuis/mulaikuis/{id}', [MuridController::class, 'startkuis']);
+Route::post('kuis/submitkuis', [MuridController::class, 'submit_questions']);
+Route::get('kuis/lihathasil/{id}', [MuridController::class, 'view_result']);
 
 // Kelas
 Route::get('kelas', [MuridController::class, 'kelas']);

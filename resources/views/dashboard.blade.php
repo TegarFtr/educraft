@@ -107,17 +107,37 @@
             </div>
             <a href="{{ url('kuis') }}" class="btn btn-secondary">Selengkapnya</a>
         </div>
-        <div class="col-3 mt-2">
-            <div class="card border-secondary"style="height: 220px">
-                <div class="card-header">
-                    <img src="{{ asset('img/sosial.jpeg') }}" class="card-img-top" alt="..." style="height: 100px">
-                </div>
-                <div class="card-body">
-                    <h3 class="card-title">Pengaruh Sosial #1</h3>
-                </div>
+        @foreach ($kuis as $key => $k)
+            <div class="col-3 mt-2">
+                <a href="javascript:;" data-toggle="modal" data-target="#dashboardkuis{{ $k->id }}">
+                    <div class="card border-secondary" style="height: 220px">
+                        <div class="card-header">
+                            <img src="#" class="card-img-top" alt="..." style="height: 100px">
+                        </div>
+                        <div class="card-body">
+                            <h3 class="card-title">{{ $k->title }}</h3>
+                        </div>
+                    </div>
+                </a>
             </div>
-
-        </div>
+            <div class="modal fade" id="dashboardkuis{{ $k->id }}">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <img src="#" alt="" width="465">
+                    </div>
+                    <div class="modal-body">
+                        <h1 class="text-center"><b>{{ $k->title }}</b></h1>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="{{ url('kuis/mulaikuis/'.$k->id) }}" class="btn btn-success">Mulai Kuis Sekarang</a>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+        @endforeach
     </div>
 
     <div class="row mt-5">
