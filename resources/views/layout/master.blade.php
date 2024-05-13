@@ -48,9 +48,9 @@
                             <li class="nav-item">
                                 <a class="nav-link @yield('activeDashboard')" href="{{ url('dashboard') }}">Dashboard</a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a class="nav-link @yield('activeAktivitas')" href="{{ url('aktivitas') }}">Aktivitas</a>
-                            </li>
+                            </li> --}}
                             <li class="nav-item">
                                 <a class="nav-link @yield('activeMateri')" href="{{ url('materi') }}">Materi</a>
                             </li>

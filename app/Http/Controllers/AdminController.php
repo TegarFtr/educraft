@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Category_master;
 use App\Models\Exam_master;
+use App\Models\Kelas;
 use App\Models\Materi;
 use App\Models\Question_master;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Stringable;
 
 class AdminController extends Controller
 {
@@ -72,28 +75,46 @@ class AdminController extends Controller
     }
 
     public function tambahkuis(Request $request){
-        $validator = Validator::make($request->all(),['title'=>'required','exam_date'=>'required','exam_category'=>'required',
-        'exam_duration'=>'required']);
+        // dd($request);
+        $validator = Validator::make($request->all(),[
+            'title'=>'required',
+            'exam_date'=>'required',
+            'category'=>'required',
+            'exam_duration'=>'required',
+            'akses' => 'required',
+            'sampul' => 'required',
+            'kelas' => 'nullable',
+        ]);
 
-        if($validator->fails()){
-            $arr=array('status'=>'false','message'=>$validator->errors()->all());
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator->errors()->first());
         }
-        else{
 
-            $exam = new Exam_master();
-            $exam->title = $request->title;
-            $exam->exam_date = $request->exam_date;
-            $exam->exam_duration = $request->exam_duration;
-            $exam->category = $request->exam_category;
-            $exam->status = 1;
-            $exam->save();
+        $requestData = $request->all();
 
-            $arr = array('status'=>'true','message'=>'exam added successfully','reload'=>url('kuismaster'));
-
+        if ($request->hasFile('sampul')) {
+            $fileName = time() . "-" . $request->file('sampul')->getClientOriginalName();
+            $path = $request->file('sampul')->storeAs('sampul', $fileName, 'public');
+            $requestData["sampul"] = '/storage/' . $path;
+        } else {
+            // Handle the case where no file is uploaded
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors('Please upload a valid file for the sampul.');
         }
+
+        // Assigning values directly from the request
+        $requestData["status"] = 1;
+
+        Exam_master::create($requestData);
 
         return redirect(url('kuismaster'));
     }
+
 
     public function editKuis(Request $request){
 
@@ -261,6 +282,32 @@ class AdminController extends Controller
         Materi::create($requestData);
 
         return redirect(url('materimaster'))->with('success', 'Materi berhasil ditambahkan!');
+    }
+
+    public function kelas(){
+        $data['kelas']=Kelas::get()->toArray();
+        return view('admin.masterkelas',$data);
+    }
+
+    public function tambahkelas(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator->errors()->first());
+        }
+
+            $cat = new Kelas();
+            $cat->name = $request->name;
+            // $cat->kode_kelas = Str::random(8);
+            $cat->save();
+
+        return redirect(url('kelasmaster'));
     }
 
 }

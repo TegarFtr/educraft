@@ -54,6 +54,11 @@
                     </table>
                 </div>
                 <!-- /.card-body -->
+                <div class="card-footer">
+                    <div class="float-right">
+                        <a href="{{ url('dashboard') }}" class="btn btn-primary">Kembali</a>
+                    </div>
+                </div>
             </div>
             </div>
       </div>

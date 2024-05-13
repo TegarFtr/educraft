@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Exam_master;
 use App\Models\Hasilkuis;
+use App\Models\Kelas;
 use App\Models\Materi;
 use App\Models\Question_master;
 use App\Models\User;
+use App\Models\UserKelas;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Response;
@@ -89,8 +91,8 @@ class MuridController extends Controller
         if(auth()->check()) {
             $userRole = auth()->user()->role;
         }
-
-        return view('kuis.kuis', compact('userRole'));
+        $kuis =  Exam_master::get();
+        return view('kuis.kuis', compact('userRole', 'kuis'));
     }
     public function startkuis(string $id){
         // Set default value for $userRole
@@ -168,6 +170,37 @@ class MuridController extends Controller
             $userRole = auth()->user()->role;
         }
 
-        return view('kelas.kelas', compact('userRole'));
+        $kelas = UserKelas::get()->where('user_id', Auth::id())->first();
+        $kode_kelas = $kelas->kode_kelas;
+        $materi = Materi::get()->where('kelas', $kode_kelas)->all();
+        $kuis = Exam_master::get()->where('kelas', $kode_kelas)->all();
+        return view('kelas.kelas', compact('userRole', 'kelas', 'materi', 'kuis'));
+    }
+
+    public function joinKelas (Request $request)
+    {
+        $request->validate([
+            'kode_kelas' => 'required|string|max:255',
+        ]);
+
+        // Cek apakah kode kelas tersedia dalam database
+        $kelas = Kelas::where('kode_kelas', $request->kode_kelas)->first();
+
+        if ($kelas) {
+            $user = UserKelas::get()->where('user_id', Auth::id())->first();
+            if (!$user) {
+                $kelas = new UserKelas();
+                $kelas->user_id = Auth::id();
+                $kelas->kode_kelas = $request->kode_kelas;
+                $kelas->save();
+            } else {
+                return redirect()->back()->with('error', 'Anda Sudah Masuk ke Kelas');
+            }
+        } else {
+            // Lakukan sesuatu jika kode kelas tidak valid
+            return redirect()->back()->with('error', 'Kode kelas tidak valid.');
+        }
+
+        return redirect(url('kelas'));
     }
 }

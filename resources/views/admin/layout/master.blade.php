@@ -123,7 +123,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('kuismaster') }}" class="nav-link @yield('activeKelas')">
+            <a href="{{ url('kelasmaster') }}" class="nav-link @yield('activeKelas')">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Kelas

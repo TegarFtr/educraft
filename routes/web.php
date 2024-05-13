@@ -37,7 +37,7 @@ Route::get('kategori/editkategori/', [AdminController::class, 'editkategori']);
 Route::get('kategori/hapuskategori/{id}', [AdminController::class, 'hapuskategori']);
 
 Route::get('kuismaster', [AdminController::class, 'kuismaster']);
-Route::get('kuismaster/tambahkuis', [AdminController::class, 'tambahkuis']);
+Route::post('kuismaster/tambahkuis', [AdminController::class, 'tambahkuis']);
 Route::get('kuismaster/editkuis', [AdminController::class, 'editkuis']);
 Route::get('kuismaster/hapuskuis/{id}', [AdminController::class, 'editkuis']);
 Route::get('kuismaster/tambahpertanyaan/{id}', [AdminController::class, 'tambahPertanyaan']);
@@ -49,6 +49,8 @@ Route::get('materimaster', [AdminController::class, 'materi']);
 Route::get('tambah-materi', [AdminController::class, 'tambahMateri']);
 Route::post('tambah-materi/store', [AdminController::class, 'storeMateri']);
 
+Route::get('kelasmaster', [AdminController::class, 'kelas']);
+Route::get('tambahkelasmaster', [AdminController::class, 'tambahkelas']);
 // Aktivitas
 Route::get('aktivitas', [MuridController::class, 'aktivitas']);
 
@@ -65,4 +67,5 @@ Route::get('kuis/lihathasil/{id}', [MuridController::class, 'view_result']);
 
 // Kelas
 Route::get('kelas', [MuridController::class, 'kelas']);
+Route::get('join-kelas', [MuridController::class, 'joinKelas']);
 

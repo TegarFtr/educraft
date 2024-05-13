@@ -29,64 +29,179 @@
             </nav>
             <div class="tab-content" id="custom-tabs-four-tabContent">
               <div class="tab-pane fade show active" id="custom-tabs-semua-materi" role="tabpanel" aria-labelledby="custom-tabs-semua-materi-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
+                <div class="row">
+                    @foreach ($kuis as $key => $k)
+                        <div class="col-3 mt-2">
+                            <a href="javascript:;" data-toggle="modal" data-target="#semuakuis{{ $k->id }}">
+                                <div class="card border-secondary" style="height: 220px">
+                                    <div class="card-header">
+                                        <img src="{{ asset($k->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ $k->title }}</h3>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">A</p>
+                        <div class="modal fade" id="semuakuis{{ $k->id }}">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <img src="{{ asset($k->sampul) }}" alt="" width="465">
+                                </div>
+                                <div class="modal-body">
+                                    <h1 class="text-center"><b>{{ $k->title }}</b></h1>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url('kuis/mulaikuis/'.$k->id) }}" class="btn btn-success">Mulai Kuis Sekarang</a>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                    </div>
+                    @endforeach
                 </div>
               </div>
               <div class="tab-pane fade" id="custom-tabs-sejarah" role="tabpanel" aria-labelledby="custom-tabs-sejarah-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
+                @foreach ($kuis as $key => $k)
+                    @if ($k->category == 1)
+                        <div class="col-3 mt-2">
+                            <a href="javascript:;" data-toggle="modal" data-target="#sejarahkuis{{ $k->id }}">
+                                <div class="card border-secondary" style="height: 220px">
+                                    <div class="card-header">
+                                        <img src="{{ asset($k->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ $k->title }}</h3>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">B.</p>
+                        <div class="modal fade" id="sejarahkuis{{ $k->id }}">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <img src="{{ asset($k->sampul) }}" alt="" width="465">
+                                </div>
+                                <div class="modal-body">
+                                    <h1 class="text-center"><b>{{ $k->title }}</b></h1>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url('kuis/mulaikuis/'.$k->id) }}" class="btn btn-success">Mulai Kuis Sekarang</a>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
               </div>
               <div class="tab-pane fade" id="custom-tabs-sosiologi" role="tabpanel" aria-labelledby="custom-tabs-sosiologi-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
+                @foreach ($kuis as $key => $k)
+                    @if ($k->category == 3)
+                        <div class="col-3 mt-2">
+                            <a href="javascript:;" data-toggle="modal" data-target="#sosiologikuis{{ $k->id }}">
+                                <div class="card border-secondary" style="height: 220px">
+                                    <div class="card-header">
+                                        <img src="{{ asset($k->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ $k->title }}</h3>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">C.</p>
+                        <div class="modal fade" id="sosiologikuis{{ $k->id }}">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <img src="{{ asset($k->sampul) }}" alt="" width="465">
+                                </div>
+                                <div class="modal-body">
+                                    <h1 class="text-center"><b>{{ $k->title }}</b></h1>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url('kuis/mulaikuis/'.$k->id) }}" class="btn btn-success">Mulai Kuis Sekarang</a>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
               </div>
               <div class="tab-pane fade" id="custom-tabs-geografi" role="tabpanel" aria-labelledby="custom-tabs-geografi-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
+                @foreach ($kuis as $key => $k)
+                    @if ($k->category == 2)
+                        <div class="col-3 mt-2">
+                            <a href="javascript:;" data-toggle="modal" data-target="#geografikuis{{ $k->id }}">
+                                <div class="card border-secondary" style="height: 220px">
+                                    <div class="card-header">
+                                        <img src="{{ asset($k->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ $k->title }}</h3>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">D.</p>
+                        <div class="modal fade" id="geografikuis{{ $k->id }}">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <img src="{{ asset($k->sampul) }}" alt="" width="465">
+                                </div>
+                                <div class="modal-body">
+                                    <h1 class="text-center"><b>{{ $k->title }}</b></h1>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url('kuis/mulaikuis/'.$k->id) }}" class="btn btn-success">Mulai Kuis Sekarang</a>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
               </div>
               <div class="tab-pane fade" id="custom-tabs-ekonomi" role="tabpanel" aria-labelledby="custom-tabs-ekonomi-tab">
-                <div class="col-3 mt-2">
-                    <div class="card border-secondary">
-                        <div class="card-header">
-                            <img src="{{ asset('img/logodoodle.jpg') }}" class="card-img-top" alt="..." style="height: 100px">
+                @foreach ($kuis as $key => $k)
+                    @if ($k->category == 4)
+                        <div class="col-3 mt-2">
+                            <a href="javascript:;" data-toggle="modal" data-target="#ekonomikuis{{ $k->id }}">
+                                <div class="card border-secondary" style="height: 220px">
+                                    <div class="card-header">
+                                        <img src="{{ asset($k->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                                    </div>
+                                    <div class="card-body">
+                                        <h3 class="card-title">{{ $k->title }}</h3>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                        <div class="card-body">
-                            <p class="card-text">E.</p>
+                        <div class="modal fade" id="ekonomikuis{{ $k->id }}">
+                            <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <img src="{{ asset($k->sampul) }}" alt="" width="465">
+                                </div>
+                                <div class="modal-body">
+                                    <h1 class="text-center"><b>{{ $k->title }}</b></h1>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="{{ url('kuis/mulaikuis/'.$k->id) }}" class="btn btn-success">Mulai Kuis Sekarang</a>
+                                </div>
+                            </div>
+                            <!-- /.modal-content -->
+                            </div>
+                            <!-- /.modal-dialog -->
                         </div>
-                    </div>
-                </div>
+                    @endif
+                @endforeach
               </div>
             </div>
           <!-- /.card -->

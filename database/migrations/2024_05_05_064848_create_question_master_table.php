@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('question_masters', function (Blueprint $table) {
             $table->id();
-            $table->string('exam_id')->nullable();
-            $table->string('questions')->nullable();
-            $table->string('ans')->nullable();
-            $table->string('options')->nullable();
-            $table->string('status')->nullable();
+            $table->longText('exam_id')->nullable()->change();
+            $table->longText('questions')->nullable()->change();
+            $table->longText('ans')->nullable()->change();
+            $table->longText('options')->nullable()->change();
+            $table->longText('status')->nullable()->change();
             $table->timestamps();
         });
     }

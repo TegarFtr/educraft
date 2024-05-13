@@ -3,7 +3,6 @@
 @section('activeDashboard', 'active')
 
 @section('content')
-
 <div class="container">
     <div class="row" style="margin-top: 100px">
         <div class="col-6">
@@ -27,20 +26,28 @@
             <div class="card border-secondary pt-4 pb-5" style="height: 200px">
                 <div class="card-body">
                   <h5 class="card-title">Masuk ke Kelas</h5>
-                  <form action="#" method="get" class="input-group" style="">
-                    <input type="text" id="searchInput" name="search" class="form-control float-right" placeholder="Masukkan Kode Kelas...">
+                  <form action="{{ url('join-kelas') }}" method="get" class="input-group" style="">
+                    <input type="text" id="searchInput" name="kode_kelas" class="form-control float-right" placeholder="Masukkan Kode Kelas...">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-secondary">
                             Gabung
                         </button>
                     </div>
                 </form>
+                <br>
+                <div class="container-fluid" >
+                    @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+                </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="row mt-5">
+    {{-- <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
             <div class="d-flex">
                 <img src="{{ asset('img/logoBintang.png') }}" width="35" height="35" alt=""><span><h2 class="mr-auto"><b> Aktivitas Terbaru </b></h2></span>
@@ -57,7 +64,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="row mt-5">
         <div class="col-12 d-flex align-items-center justify-content-between">
@@ -112,7 +119,7 @@
                 <a href="javascript:;" data-toggle="modal" data-target="#dashboardkuis{{ $k->id }}">
                     <div class="card border-secondary" style="height: 220px">
                         <div class="card-header">
-                            <img src="#" class="card-img-top" alt="..." style="height: 100px">
+                            <img src="{{ asset($k->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
                         </div>
                         <div class="card-body">
                             <h3 class="card-title">{{ $k->title }}</h3>
@@ -124,7 +131,7 @@
                 <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <img src="#" alt="" width="465">
+                        <img src="{{ asset($k->sampul) }}" alt="" width="465">
                     </div>
                     <div class="modal-body">
                         <h1 class="text-center"><b>{{ $k->title }}</b></h1>

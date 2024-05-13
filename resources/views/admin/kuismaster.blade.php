@@ -42,9 +42,12 @@
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Sampul</th>
                             <th>Category</th>
                             <th>Exam Date</th>
                             <th>Status</th>
+                            <th>Akses</th>
+                            <th>kelas</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -53,9 +56,14 @@
                            <tr>
                                <td>{{ $key+1}}</td>
                                <td>{{ $exam['title']}}</td>
+                               <td>
+                                    <img src="{{ asset($exam['sampul']) }}" alt="" width="200">
+                                </td>
                                <td>{{ $exam['cat_name']}}</td>
                                <td>{{ $exam['exam_date']}}</td>
                                <td><input type="checkbox" class="exam_status" data-id="{{ $exam['id']}}" <?php if($exam['status']==1){ echo "checked";} ?> name="status"></td>
+                               <td>{{ $exam['akses']}}</td>
+                               <td>{{ $exam['kelas']}}</td>
                                <td>
                                     <a href="javascript:;" class="btn btn-info" data-toggle="modal" data-target="#editKuis{{ $exam['id'] }}">Edit</a>
                                     <a href="javascript:;" class="btn btn-danger" data-toggle="modal" data-target="#hapusKuis{{ $exam['id'] }}">Hapus</a>
@@ -167,7 +175,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('kuismaster/tambahkuis')}}" class="database_operation">
+          <form action="{{ url('kuismaster/tambahkuis')}}" method="POST" class="database_operation" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">
@@ -178,25 +186,48 @@
                     </div>
                     <div class="col-sm-12">
                         <div class="form-group">
+                            <label for="">Sampul Kuis</label>
+                            <input type="file" required="required" name="sampul"  class="form-control">
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
                             <label for="">Enter Date</label>
                             <input type="date" required="required" name="exam_date"  class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-12">
-                      <div class="form-group">
-                          <label for="">Enter duration (in minutes)</label>
-                          <input type="text" required="required" name="exam_duration"  class="form-control">
-                      </div>
-                  </div>
+                        <div class="form-group">
+                            <label for="">Enter duration (in minutes)</label>
+                            <input type="text" required="required" name="exam_duration"  class="form-control">
+                        </div>
+                    </div>
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="">Select category</label>
-                            <select class="form-control" required="required" name="exam_category">
+                            <select class="form-control" required="required" name="category">
                                 <option value="">Select</option>
                                 @foreach ($category as $cat)
                                 <option value="{{ $cat['id']}}">{{ $cat['name']}}</option>
                                 @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label for="">Akses</label>
+                            <select class="form-control" required="required" name="akses" onchange="showHideKelas(this.value)">
+                                <option value="">Select</option>
+                                <option value="umum">Umum</option>
+                                <option value="privat">Privat</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12" id="kelasDiv" style="display:none;">
+                        <div class="form-group">
+                            <label for="">Kelas</label>
+                            <input type="text" name="kelas" placeholder="Masukkan Kode Kelas" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-12">
@@ -212,3 +243,16 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    function showHideKelas(value) {
+        var kelasDiv = document.getElementById("kelasDiv");
+        if (value === "privat") {
+            kelasDiv.style.display = "block";
+        } else {
+            kelasDiv.style.display = "none";
+        }
+    }
+</script>
+@endpush

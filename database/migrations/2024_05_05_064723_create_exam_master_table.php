@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('exam_date')->nullable();
             $table->string('exam_duration')->nullable();
             $table->string('status')->nullable();
+            $table->string('akses')->nullable();
+            $table->string('kelas')->nullable();
+            $table->string('sampul')->nullable();
             $table->timestamps();
         });
     }
