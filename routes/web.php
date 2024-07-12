@@ -35,7 +35,6 @@ Route::get('/home', function () {
     return redirect('')->route('awal');
 });
 Route::get('AdminDashboard', [AdminController::class, 'index']);
-Route::get('guru', [AdminController::class, 'guru']);
 
 Route::resource('guru', GuruController::class);
 Route::resource('kategori', KategoriController::class);

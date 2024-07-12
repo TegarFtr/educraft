@@ -95,7 +95,7 @@
 
           <li class="nav-header">MAIN MENU</li>
           <li class="nav-item">
-            <a href="{{ url('kuismaster') }}" class="nav-link @yield('activeKuis')">
+            <a href="{{ url('kuis-master') }}" class="nav-link @yield('activeKuis')">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Kuis Master
@@ -104,7 +104,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('materimaster') }}" class="nav-link @yield('activeMateri')">
+            <a href="{{ url('materi-master') }}" class="nav-link @yield('activeMateri')">
               <i class="nav-icon fas fa-book"></i>
               <p>
                 Materi Master
@@ -125,7 +125,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('kelasmaster') }}" class="nav-link @yield('activeKelas')">
+                <a href="{{ url('kelas-master') }}" class="nav-link @yield('activeKelas')">
                   <i class="nav-icon fas fa-book"></i>
                   <p>
                     Kelas

@@ -21,19 +21,26 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 class MuridController extends Controller
 {
     public function dashboard(){
-        // Set default value for $userRole
+        // Set default value for $userRole and $kode_kelas
         $userRole = null;
+        $kode_kelas = null;
 
         // Check if the user is authenticated
         if(auth()->check()) {
             $userRole = auth()->user()->role;
         }
 
-        $kelas = UserKelas::get()->where('user_id', Auth::id())->first();
-        $kode_kelas = $kelas->kode_kelas;
-        $materi = Materi::get()->where('akses', 'umum')->all();
-        $kuis = Exam_master::get()->where('akses', 'umum')->all();
-        return view('dashboard', compact('userRole', 'materi', 'kuis'));
+        // Get the class code for the authenticated user
+        $kelas = UserKelas::where('user_id', auth()->id())->first();
+        if ($kelas) {
+            $kode_kelas = $kelas->kode_kelas;
+        }
+
+        // Fetch materials and quizzes with public access
+        $materi = Materi::where('akses', 'umum')->get();
+        $kuis = Exam_master::where('akses', 'umum')->get();
+
+        return view('dashboard', compact('userRole', 'kode_kelas', 'materi', 'kuis'));
     }
 
     public function aktivitas(){
@@ -168,18 +175,26 @@ class MuridController extends Controller
     public function kelas(){
         // Set default value for $userRole
         $userRole = null;
+        $kode_kelas = null;
 
         // Check if the user is authenticated
         if(auth()->check()) {
             $userRole = auth()->user()->role;
         }
 
-        $kelas = UserKelas::get()->where('user_id', Auth::id())->first();
-        $kode_kelas = $kelas->kode_kelas;
-        $materi = Materi::get()->where('kelas', $kode_kelas)->all();
-        $kuis = Exam_master::get()->where('kelas', $kode_kelas)->all();
+        // Get the class code for the authenticated user
+        $kelas = UserKelas::where('user_id', auth()->id())->first();
+        if ($kelas) {
+            $kode_kelas = $kelas->kode_kelas;
+        }
+
+        // Fetch materials and quizzes for the specific class
+        $materi = $kode_kelas ? Materi::where('kelas', $kode_kelas)->get() : collect();
+        $kuis = $kode_kelas ? Exam_master::where('kelas', $kode_kelas)->get() : collect();
+
         return view('kelas.kelas', compact('userRole', 'kelas', 'materi', 'kuis'));
     }
+
 
     public function joinKelas (Request $request)
     {

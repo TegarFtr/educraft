@@ -67,7 +67,7 @@
                                <td>
                                     <a href="javascript:;" class="btn btn-info" data-toggle="modal" data-target="#editKuis{{ $exam['id'] }}">Edit</a>
                                     <a href="javascript:;" class="btn btn-danger" data-toggle="modal" data-target="#hapusKuis{{ $exam['id'] }}">Hapus</a>
-                                    <a href="{{ url('kuismaster/tambahpertanyaan/'.$exam['id'])}}" class="btn btn-primary">Tambah Pertanyaan</a>
+                                    <a href="{{ url('pertanyaan'.$exam['id'])}}" class="btn btn-primary">Tambah Pertanyaan</a>
                                </td>
                            </tr>
 
