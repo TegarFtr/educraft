@@ -29,8 +29,10 @@ class MuridController extends Controller
             $userRole = auth()->user()->role;
         }
 
-        $materi = Materi::get();
-        $kuis =  Exam_master::get();
+        $kelas = UserKelas::get()->where('user_id', Auth::id())->first();
+        $kode_kelas = $kelas->kode_kelas;
+        $materi = Materi::get()->where('akses', 'umum')->all();
+        $kuis = Exam_master::get()->where('akses', 'umum')->all();
         return view('dashboard', compact('userRole', 'materi', 'kuis'));
     }
 
@@ -53,7 +55,8 @@ class MuridController extends Controller
         if(auth()->check()) {
             $userRole = auth()->user()->role;
         }
-        $materi = Materi::get();
+        $materi = Materi::get()->where('akses', 'umum')->all();
+        $kuis = Exam_master::get()->where('akses', 'umum')->all();
         return view('materi.materi', compact('userRole', 'materi'));
     }
     public function bacamateri(string $id){
@@ -91,7 +94,8 @@ class MuridController extends Controller
         if(auth()->check()) {
             $userRole = auth()->user()->role;
         }
-        $kuis =  Exam_master::get();
+        $materi = Materi::get()->where('akses', 'umum')->all();
+        $kuis = Exam_master::get()->where('akses', 'umum')->all();
         return view('kuis.kuis', compact('userRole', 'kuis'));
     }
     public function startkuis(string $id){

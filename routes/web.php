@@ -1,7 +1,13 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GuruController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\KelasController;
+use App\Http\Controllers\KuisController;
+use App\Http\Controllers\MateriController;
 use App\Http\Controllers\MuridController;
+use App\Http\Controllers\PertanyaanController;
 use App\Http\Controllers\SesiController;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Route;
@@ -28,29 +34,19 @@ Route::get('/logout', [SesiController::class, 'logout']);
 Route::get('/home', function () {
     return redirect('')->route('awal');
 });
-Route::get('dashboard', [MuridController::class, 'dashboard']);
 Route::get('AdminDashboard', [AdminController::class, 'index']);
+Route::get('guru', [AdminController::class, 'guru']);
 
-Route::get('kategori', [AdminController::class, 'kategori']);
-Route::get('kategori/tambahkategori', [AdminController::class, 'tambahkategori']);
-Route::get('kategori/editkategori/', [AdminController::class, 'editkategori']);
-Route::get('kategori/hapuskategori/{id}', [AdminController::class, 'hapuskategori']);
+Route::resource('guru', GuruController::class);
+Route::resource('kategori', KategoriController::class);
 
-Route::get('kuismaster', [AdminController::class, 'kuismaster']);
-Route::post('kuismaster/tambahkuis', [AdminController::class, 'tambahkuis']);
-Route::get('kuismaster/editkuis', [AdminController::class, 'editkuis']);
-Route::get('kuismaster/hapuskuis/{id}', [AdminController::class, 'editkuis']);
-Route::get('kuismaster/tambahpertanyaan/{id}', [AdminController::class, 'tambahPertanyaan']);
-Route::get('kuismaster/tambahpertanyaanbaru', [AdminController::class, 'tambahPertanyaanBaru']);
-Route::get('kuismaster/editpertanyaanbaru', [AdminController::class, 'editPertanyaanBaru']);
-Route::get('kuismaster/hapuspertanyaanbaru/{id}', [AdminController::class, 'hapusPertanyaanBaru']);
+Route::resource('kuis-master', KuisController::class);
+Route::resource('pertanyaan', PertanyaanController::class);
+Route::resource('materi-master', MateriController::class);
+Route::resource('kelas-master', KelasController::class);
 
-Route::get('materimaster', [AdminController::class, 'materi']);
-Route::get('tambah-materi', [AdminController::class, 'tambahMateri']);
-Route::post('tambah-materi/store', [AdminController::class, 'storeMateri']);
 
-Route::get('kelasmaster', [AdminController::class, 'kelas']);
-Route::get('tambahkelasmaster', [AdminController::class, 'tambahkelas']);
+Route::get('dashboard', [MuridController::class, 'dashboard']);
 // Aktivitas
 Route::get('aktivitas', [MuridController::class, 'aktivitas']);
 

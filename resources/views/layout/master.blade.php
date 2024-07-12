@@ -20,6 +20,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('AdminLTE') }}/dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="{{ asset('resources/css/style.css') }}">
     <style>
         .btn-custom-color {
             background-color: #4bb6b7;
@@ -30,6 +31,8 @@
             background-color: #818181;
         }
     </style>
+
+    @stack('stylekuis')
 </head>
 
 <body>

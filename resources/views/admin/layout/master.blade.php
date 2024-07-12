@@ -93,17 +93,7 @@
             </a>
           </li>
 
-            <li class="nav-header">MAIN MENU</li>
-
-          <li class="nav-item">
-            <a href="{{ url('kategori') }}" class="nav-link @yield('activeKategori')">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Kategori
-                <i class="right fas "></i>
-              </p>
-            </a>
-          </li>
+          <li class="nav-header">MAIN MENU</li>
           <li class="nav-item">
             <a href="{{ url('kuismaster') }}" class="nav-link @yield('activeKuis')">
               <i class="nav-icon fas fa-book"></i>
@@ -122,17 +112,36 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ url('kelasmaster') }}" class="nav-link @yield('activeKelas')">
-              <i class="nav-icon fas fa-book"></i>
-              <p>
-                Kelas
-                <i class="right fas "></i>
-              </p>
-            </a>
-          </li>
 
           <li class="nav-header">LANJUTAN</li>
+          @if (in_array($userRole, ['admin']))
+            <li class="nav-item">
+                <a href="{{ url('kategori') }}" class="nav-link @yield('activeKategori')">
+                <i class="nav-icon fas fa-book"></i>
+                <p>
+                    Kategori
+                    <i class="right fas "></i>
+                </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ url('kelasmaster') }}" class="nav-link @yield('activeKelas')">
+                  <i class="nav-icon fas fa-book"></i>
+                  <p>
+                    Kelas
+                    <i class="right fas "></i>
+                  </p>
+                </a>
+              </li>
+            <li class="nav-item">
+                <a href="{{ url('guru') }}" class="nav-link @yield('activeAdmin')">
+                <i class="nav-icon fas fa-user"></i>
+                <p>
+                    Guru
+                </p>
+                </a>
+            </li>
+          @endif
           <li class="nav-item">
             <a href="#" class="nav-link" data-toggle="modal" data-target="#modalLogoutConfirm">
               <i class="fa-solid fa-right-from-bracket"></i>

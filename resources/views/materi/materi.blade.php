@@ -31,35 +31,38 @@
               <div class="tab-pane fade show active" id="custom-tabs-semua-materi" role="tabpanel" aria-labelledby="custom-tabs-semua-materi-tab">
                 <div class="row">
                     @foreach ($materi as $key => $m)
-                        <div class="col-3 mt-2">
-                            <a href="javascript:;" data-toggle="modal" data-target="#materisemua{{ $m->id }}">
-                                <div class="card border-secondary" style="height: 220px">
-                                    <div class="card-header">
-                                        <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                    <div class="col-3">
+                        <a href="javascript:;" data-toggle="modal" data-target="#dashboardmateri{{ $m->id }}">
+                            <div class="materi_container">
+                                <div class="box">
+                                    <div class="img-box">
+                                        <img src="{{ asset($m->sampul) }}" class="img1" alt="">
                                     </div>
-                                    <div class="card-body">
-                                        <h3 class="card-title">{{ $m->title }}</h3>
+                                    <div class="detail-box">
+                                        <h5>{{ $m->title }}</h5>
                                     </div>
                                 </div>
-                            </a>
-                        </div>
-                        <div class="modal fade" id="materisemua{{ $m->id }}">
-                            <div class="modal-dialog">
+                            </div>
+                        </a>
+                    </div>
+                    <!-- Modal dashboard materi -->
+                    <div class="modal fade" id="dashboardmateri{{ $m->id }}">
+                        <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <img src="{{ asset($m->sampul) }}" alt="" width="465">
                                 </div>
                                 <div class="modal-body">
                                     <h1 class="text-center"><b>{{ $m->title }}</b></h1>
-                                </div>
-                                <div class="modal-footer">
-                                    <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                    <p>{{ $m->description }}</p>
+                                    <a href="{{ url('materi/bacamateri/' . $m->id) }}" class="btn btn-success">Baca Materi
+                                        Sekarang</a>
                                 </div>
                             </div>
                             <!-- /.modal-content -->
-                            </div>
-                            <!-- /.modal-dialog -->
                         </div>
+                        <!-- /.modal-dialog -->
+                    </div>
                     @endforeach
                 </div>
               </div>
@@ -67,35 +70,38 @@
                 <div class="row">
                     @foreach ($materi as $key => $m)
                         @if($m->category == 1)
-                            <div class="col-3 mt-2">
-                                <a href="javascript:;" data-toggle="modal" data-target="#materisejarah{{ $m->id }}">
-                                    <div class="card border-secondary" style="height: 220px">
-                                        <div class="card-header">
-                                            <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                        <div class="col-3">
+                            <a href="javascript:;" data-toggle="modal" data-target="#dashboardmateri{{ $m->id }}">
+                                <div class="materi_container">
+                                    <div class="box">
+                                        <div class="img-box">
+                                            <img src="{{ asset($m->sampul) }}" class="img1" alt="">
                                         </div>
-                                        <div class="card-body">
-                                            <h3 class="card-title">{{ $m->title }}</h3>
+                                        <div class="detail-box">
+                                            <h5>{{ $m->title }}</h5>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="modal fade" id="materisejarah{{ $m->id }}">
-                                <div class="modal-dialog">
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Modal dashboard materi -->
+                        <div class="modal fade" id="dashboardmateri{{ $m->id }}">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <img src="{{ asset($m->sampul) }}" alt="" width="465">
                                     </div>
                                     <div class="modal-body">
                                         <h1 class="text-center"><b>{{ $m->title }}</b></h1>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                        <p>{{ $m->description }}</p>
+                                        <a href="{{ url('materi/bacamateri/' . $m->id) }}" class="btn btn-success">Baca Materi
+                                            Sekarang</a>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
                             </div>
+                            <!-- /.modal-dialog -->
+                        </div>
                         @endif
                     @endforeach
                 </div>
@@ -104,35 +110,38 @@
                 <div class="row">
                     @foreach ($materi as $key => $m)
                         @if($m->category == 3)
-                            <div class="col-3 mt-2">
-                                <a href="javascript:;" data-toggle="modal" data-target="#materisosiologi{{ $m->id }}">
-                                    <div class="card border-secondary" style="height: 220px">
-                                        <div class="card-header">
-                                            <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                        <div class="col-3">
+                            <a href="javascript:;" data-toggle="modal" data-target="#dashboardmateri{{ $m->id }}">
+                                <div class="materi_container">
+                                    <div class="box">
+                                        <div class="img-box">
+                                            <img src="{{ asset($m->sampul) }}" class="img1" alt="">
                                         </div>
-                                        <div class="card-body">
-                                            <h3 class="card-title">{{ $m->title }}</h3>
+                                        <div class="detail-box">
+                                            <h5>{{ $m->title }}</h5>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="modal fade" id="materisosiologi{{ $m->id }}">
-                                <div class="modal-dialog">
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Modal dashboard materi -->
+                        <div class="modal fade" id="dashboardmateri{{ $m->id }}">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <img src="{{ asset($m->sampul) }}" alt="" width="465">
                                     </div>
                                     <div class="modal-body">
                                         <h1 class="text-center"><b>{{ $m->title }}</b></h1>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                        <p>{{ $m->description }}</p>
+                                        <a href="{{ url('materi/bacamateri/' . $m->id) }}" class="btn btn-success">Baca Materi
+                                            Sekarang</a>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
                             </div>
+                            <!-- /.modal-dialog -->
+                        </div>
                         @endif
                     @endforeach
                 </div>
@@ -141,35 +150,38 @@
                 <div class="row">
                     @foreach ($materi as $key => $m)
                         @if($m->category == 2)
-                            <div class="col-3 mt-2">
-                                <a href="javascript:;" data-toggle="modal" data-target="#materigeografi{{ $m->id }}">
-                                    <div class="card border-secondary" style="height: 220px">
-                                        <div class="card-header">
-                                            <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                        <div class="col-3">
+                            <a href="javascript:;" data-toggle="modal" data-target="#dashboardmateri{{ $m->id }}">
+                                <div class="materi_container">
+                                    <div class="box">
+                                        <div class="img-box">
+                                            <img src="{{ asset($m->sampul) }}" class="img1" alt="">
                                         </div>
-                                        <div class="card-body">
-                                            <h3 class="card-title">{{ $m->title }}</h3>
+                                        <div class="detail-box">
+                                            <h5>{{ $m->title }}</h5>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="modal fade" id="materigeografi{{ $m->id }}">
-                                <div class="modal-dialog">
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Modal dashboard materi -->
+                        <div class="modal fade" id="dashboardmateri{{ $m->id }}">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <img src="{{ asset($m->sampul) }}" alt="" width="465">
                                     </div>
                                     <div class="modal-body">
                                         <h1 class="text-center"><b>{{ $m->title }}</b></h1>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                        <p>{{ $m->description }}</p>
+                                        <a href="{{ url('materi/bacamateri/' . $m->id) }}" class="btn btn-success">Baca Materi
+                                            Sekarang</a>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
                             </div>
+                            <!-- /.modal-dialog -->
+                        </div>
                         @endif
                     @endforeach
                 </div>
@@ -178,35 +190,38 @@
                 <div class="row">
                     @foreach ($materi as $key => $m)
                         @if($m->category == 4)
-                            <div class="col-3 mt-2">
-                                <a href="javascript:;" data-toggle="modal" data-target="#materiekonomi{{ $m->id }}">
-                                    <div class="card border-secondary" style="height: 220px">
-                                        <div class="card-header">
-                                            <img src="{{ asset($m->sampul) }}" class="card-img-top" alt="..." style="height: 100px">
+                        <div class="col-3">
+                            <a href="javascript:;" data-toggle="modal" data-target="#dashboardmateri{{ $m->id }}">
+                                <div class="materi_container">
+                                    <div class="box">
+                                        <div class="img-box">
+                                            <img src="{{ asset($m->sampul) }}" class="img1" alt="">
                                         </div>
-                                        <div class="card-body">
-                                            <h3 class="card-title">{{ $m->title }}</h3>
+                                        <div class="detail-box">
+                                            <h5>{{ $m->title }}</h5>
                                         </div>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="modal fade" id="materiekonomi{{ $m->id }}">
-                                <div class="modal-dialog">
+                                </div>
+                            </a>
+                        </div>
+                        <!-- Modal dashboard materi -->
+                        <div class="modal fade" id="dashboardmateri{{ $m->id }}">
+                            <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <img src="{{ asset($m->sampul) }}" alt="" width="465">
                                     </div>
                                     <div class="modal-body">
                                         <h1 class="text-center"><b>{{ $m->title }}</b></h1>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="{{ url('materi/bacamateri/'.$m->id) }}" class="btn btn-success">Baca Materi Sekarang</a>
+                                        <p>{{ $m->description }}</p>
+                                        <a href="{{ url('materi/bacamateri/' . $m->id) }}" class="btn btn-success">Baca Materi
+                                            Sekarang</a>
                                     </div>
                                 </div>
                                 <!-- /.modal-content -->
-                                </div>
-                                <!-- /.modal-dialog -->
                             </div>
+                            <!-- /.modal-dialog -->
+                        </div>
                         @endif
                     @endforeach
                 </div>

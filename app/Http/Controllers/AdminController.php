@@ -7,6 +7,7 @@ use App\Models\Exam_master;
 use App\Models\Kelas;
 use App\Models\Materi;
 use App\Models\Question_master;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -30,7 +31,8 @@ class AdminController extends Controller
     public function kategori(){
 
         $data['category']=Category_master::get()->toArray();
-        return view('admin.kategori',$data);
+        $userRole = auth()->user()->role;
+        return view('admin.kategori',$data, compact('userRole'));
     }
 
     public function tambahkategori(Request $request){
@@ -69,9 +71,10 @@ class AdminController extends Controller
 
     public function kuismaster()
     {
+        $userRole = auth()->user()->role;
         $data['category']=Category_master::where('status','1')->get()->toArray();
         $data['exams']=Exam_master::select(['exam_masters.*','categories_masters.name as cat_name'])->join('categories_masters','exam_masters.category','=','categories_masters.id')->get()->toArray();
-        return view('admin.kuismaster',$data);
+        return view('admin.kuismaster',$data, compact('userRole'));
     }
 
     public function tambahkuis(Request $request){
@@ -132,14 +135,15 @@ class AdminController extends Controller
 
     public function hapusKuis($id){
         $exam1 = Exam_master::where('id',$id)->get()->first();
-        $exam1->delete();
+        $exam1->destroy();
         return redirect(url('kuismaster'));
     }
 
     public function tambahPertanyaan($id){
 
+        $userRole = auth()->user()->role;
         $data['questions']=Question_master::where('exam_id',$id)->get()->toArray();
-        return view('admin.addExam',$data);
+        return view('admin.addExam',$data, compact('userRole'));
     }
 
     public function tambahPertanyaanBaru(Request $request){
@@ -171,8 +175,6 @@ class AdminController extends Controller
             }else{
                 $q->ans=$request->option_4;
             }
-
-
 
             $q->status=1;
             $q->options=json_encode(array('option1'=>$request->option_1,'option2'=>$request->option_2,'option3'=>$request->option_3,'option4'=>$request->option_4));
@@ -219,11 +221,13 @@ class AdminController extends Controller
     public function materi(){
         $materi = Materi::get();
         $category = Category_master::where('status','1')->get()->toArray();
-        return view('admin.materimaster', compact('materi', 'category'));
+        $userRole = auth()->user()->role;
+        return view('admin.materimaster', compact('materi', 'category', 'userRole'));
     }
     public function tambahMateri(){
+        $userRole = auth()->user()->role;
         $category = Category_master::where('status','1')->get()->toArray();
-        return view('admin.tambahmateri', compact('category'));
+        return view('admin.tambahmateri', compact('category', 'userRole'));
     }
     public function storeMateri(Request $request){
         $validator = Validator::make($request->all(), [
@@ -286,7 +290,8 @@ class AdminController extends Controller
 
     public function kelas(){
         $data['kelas']=Kelas::get()->toArray();
-        return view('admin.masterkelas',$data);
+        $userRole = auth()->user()->role;
+        return view('admin.masterkelas',$data, compact('userRole'));
     }
 
     public function tambahkelas(Request $request)
@@ -308,6 +313,74 @@ class AdminController extends Controller
             $cat->save();
 
         return redirect(url('kelasmaster'));
+    }
+
+    public function guru(){
+        $data = User::get()->where('role', 'guru');
+        $userRole = auth()->user()->role;
+        return view('admin.guru', compact('data', 'userRole'));
+    }
+
+    public function tambahguru(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nis' => 'required|min:5',
+            'nama' => 'required|min:2',
+            'username' => 'required|unique:users,username',
+            'password' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors($validator->errors()->first()); // Passing the first error message as a string
+        }
+
+        $data['nis'] = $request->nis;
+        $data['nama'] = $request->nama;
+        $data['username'] = $request->username;
+        $data['password_login'] = $request->password;
+        $data['password'] = bcrypt($request->password);
+        $data['role'] = 'guru';
+
+        User::create($data);
+
+        // Redirect with a success message
+        return redirect(url('guru'))->with('success', 'Petugas berhasil ditambahkan!');
+    }
+
+    public function updateguru(Request $request, string $id)
+    {
+        $validator = Validator::make($request->all(),[
+            'nis' => 'required|min:5',
+            'nama' => 'required|min:2',
+            'username' => "required|unique:users,username,$id",
+            'password' => 'required'
+        ]);
+        if($validator->fails()) return redirect()->back()->withInput()->withErrors($validator);
+
+        $data['nis'] = $request->nis;
+        $data['nama'] = $request->nama;
+        $data['username'] = $request->username;
+        $data['password_login'] = $request->password;
+        $data['password'] = bcrypt($request->password);
+        $data['role'] = 'guru';
+
+        User::whereId($id)->update($data);
+
+        return redirect(url('guru'))->with('success', 'Petugas berhasil diperbarui!');
+    }
+
+    public function hapusguru(string $id)
+    {
+        $data = User::find($id);
+
+        if($data){
+            $data->delete();
+        }
+
+        return redirect(url('guru'))->with('success', 'Petugas berhasil dihapus!');
     }
 
 }

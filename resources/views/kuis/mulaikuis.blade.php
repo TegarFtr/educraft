@@ -2,6 +2,11 @@
 @section('title', 'OneLearn | Kuis')
 @section('activeKuis', 'active')
 
+
+@push('stylekuis')
+    <link rel="stylesheet" href="{{ asset('resources/css/style1.css') }}">
+@endpush
+
 @section('content')
 <section class="content">
     <div class="container-fluid" style="margin-top: 75px">
@@ -44,10 +49,10 @@
                           ?>
                           <input type="hidden" name="question{{$key+1}}" value="{{$q['id']}}">
                           <ul class="question_options">
-                              <li><input type="radio" value="{{ $options['option1']}}" name="ans{{$key+1}}"> {{ $options['option1']}}</li>
-                              <li><input type="radio" value="{{ $options['option2']}}" name="ans{{$key+1}}"> {{ $options['option2']}}</li>
-                              <li><input type="radio" value="{{ $options['option3']}}" name="ans{{$key+1}}"> {{ $options['option3']}}</li>
-                              <li><input type="radio" value="{{ $options['option4']}}" name="ans{{$key+1}}"> {{ $options['option4']}}</li>
+                              <li><input class="form-check-input me-1 mb-2" type="radio" value="{{ $options['option1']}}" name="ans{{$key+1}}"> {{ $options['option1']}}</li>
+                              <li><input class="form-check-input me-1 mb-2" type="radio" value="{{ $options['option2']}}" name="ans{{$key+1}}"> {{ $options['option2']}}</li>
+                              <li><input class="form-check-input me-1 mb-2" type="radio" value="{{ $options['option3']}}" name="ans{{$key+1}}"> {{ $options['option3']}}</li>
+                              <li><input class="form-check-input me-1 mb-2" type="radio" value="{{ $options['option4']}}" name="ans{{$key+1}}"> {{ $options['option4']}}</li>
 
                               <li style="display: none;"><input value="0" type="radio" checked="checked" name="ans{{$key+1}}"> {{ $options['option4']}}</li>
                           </ul>

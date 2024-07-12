@@ -1,5 +1,5 @@
 @extends('admin.layout.master')
-@section('activeKategori', 'active')
+@section('activeKelas', 'active')
 
 @section('contentAdmin')
 <section class="content-header">
