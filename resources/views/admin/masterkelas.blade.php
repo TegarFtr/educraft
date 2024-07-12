@@ -137,7 +137,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('tambahkelasmaster')}}" class="database_operation">
+                <form action="{{ route('kelas-master.store') }}" class="database_operation">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">

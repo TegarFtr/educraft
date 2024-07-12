@@ -65,7 +65,7 @@
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{ url('kategori/editkategori')}}" class="database_operation">
+                                        <form action="{{ route('kategori.update') }}" class="database_operation">
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="form-group">
@@ -100,7 +100,7 @@
                                     </h5>
                                 </div>
                                 <div class="modal-footer">
-                                    <form action="{{ url('kategori/hapuskategori/'.$cat['id']) }}">
+                                    <form action="{{ route('kategori.destroy', $cat['id']) }}">
                                         <button type="submit" class="btn btn-danger" name="hsimpan">Hapus</button>
                                         <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
                                     </form>
@@ -137,7 +137,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form action="{{ url('kategori/tambahkategori')}}" class="database_operation">
+                <form action="{{ route('kategori.store') }}" class="database_operation">
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-group">

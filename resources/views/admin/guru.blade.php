@@ -82,7 +82,7 @@
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Data Anggota</h1>
                             </div>
-                            <form action="{{ url('guru/update', $val->id) }}" method="post">
+                            <form action="{{ route('guru.update', $val->id) }}" method="post">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="mb-3">
@@ -127,7 +127,7 @@
                                 </h5>
                             </div>
                             <div class="modal-footer">
-                                <form action="{{ url('guru/hapus', $val->id) }}" method="POST">
+                                <form action="{{ route('guru.destroy', $val->id) }}" method="POST">
                                     @csrf
                                     <button type="submit" class="btn btn-danger" name="hsimpan">Hapus</button>
                                     <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
@@ -159,7 +159,7 @@
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Form Data Anggota</h1>
                             </div>
-                            <form action="{{ url('guru/tambah') }}" method="post">
+                            <form action="{{ route('guru.store') }}" method="post">
                                 @csrf
                                 <div class="modal-body">
                                     <div class="mb-3">

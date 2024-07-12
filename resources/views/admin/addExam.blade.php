@@ -68,7 +68,7 @@
                                       <button type="button" class="close" data-dismiss="modal">&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                      <form action="{{ url('kuismaster/editpertanyaanbaru')}}" class="database_operation">
+                                      <form action="{{ route('pertanyaan.update') }}" class="database_operation">
                                             <div class="row">
                                                 <div class="col-sm-12">
                                                     <div class="form-group">
@@ -141,7 +141,7 @@
                                         </h5>
                                     </div>
                                     <div class="modal-footer">
-                                        <form action="{{ url('kuismaster/hapuspertanyaanbaru/'.$question['id']) }}">
+                                        <form action="{{ route('pertanyaan.destroy', $question['id']) }}">
                                             <button type="submit" class="btn btn-danger" name="hsimpan">Hapus</button>
                                             <button type="button" class="btn btn-warning" data-dismiss="modal">Batal</button>
                                         </form>
@@ -185,7 +185,7 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <form action="{{ url('kuismaster/tambahpertanyaanbaru')}}" class="database_operation">
+          <form action="{{ route('pertanyaan.store') }}" class="database_operation">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="form-group">

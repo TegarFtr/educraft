@@ -48,7 +48,7 @@ class KelasController extends Controller
             // $cat->kode_kelas = Str::random(8);
             $cat->save();
 
-        return redirect(url('kelasmaster'));
+        return redirect(url('kelas-master'));
     }
 
     /**

@@ -27,7 +27,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-12">
-                <form action="{{ url('tambah-materi/store') }}" method="POST" class="database_operation" enctype="multipart/form-data">
+                <form action="{{ route('materi-master.store') }}" method="POST" class="database_operation" enctype="multipart/form-data">
                     <div class="card">
                         <div class="row">
                             <div class="col-12">

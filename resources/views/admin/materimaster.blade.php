@@ -39,7 +39,7 @@
               <h3 class="card-title">Materi Master</h3>
 
               <div class="card-tools">
-                    <a class="btn btn-info btn-sm" href="{{ url('tambah-materi') }}">Add new</a>
+                    <a class="btn btn-info btn-sm" href="{{ route('materi-master.create') }}">Add new</a>
               </div>
             </div>
             <div class="card-body">
